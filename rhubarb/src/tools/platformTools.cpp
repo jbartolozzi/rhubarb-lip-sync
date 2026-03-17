@@ -77,10 +77,19 @@ path _getBinDirectory() {
 	return binDirectory;
 }
 
-// Returns the directory containing the Rhubarb executable binary.
+static std::optional<path> overriddenBinDirectory;
+
+// Returns the directory containing the Rhubarb executable binary (or the overridden path).
 path getBinDirectory() {
+	if (overriddenBinDirectory) {
+		return *overriddenBinDirectory;
+	}
 	static const path result = _getBinDirectory();
 	return result;
+}
+
+void setBinDirectory(const path& dir) {
+	overriddenBinDirectory = dir;
 }
 
 path getTempFilePath() {

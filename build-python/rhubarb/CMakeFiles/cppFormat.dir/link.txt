@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcppFormat.a CMakeFiles/cppFormat.dir/lib/cppformat/format.cc.o CMakeFiles/cppFormat.dir/lib/cppformat/posix.cc.o
+/usr/bin/ranlib libcppFormat.a

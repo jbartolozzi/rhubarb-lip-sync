@@ -3,7 +3,6 @@
 #include "tools/EnumConverter.h"
 
 enum class ExportFormat {
-	Dat,
 	Tsv,
 	Xml,
 	Json

@@ -44,6 +44,10 @@ EnumConverter<Shape>::member_data ShapeConverter::getMemberData() {
 		{ Shape::F, "F" },
 		{ Shape::G, "G" },
 		{ Shape::H, "H" },
+		{ Shape::I, "I" },
+		{ Shape::J, "J" },
+		{ Shape::K, "K" },
+		{ Shape::L, "L" },
 		{ Shape::X, "X" }
 	};
 }

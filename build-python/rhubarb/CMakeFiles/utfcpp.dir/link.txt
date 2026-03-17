@@ -1,0 +1,2 @@
+/usr/bin/ar qc libutfcpp.a "CMakeFiles/utfcpp.dir/lib/header-only.c.o"
+/usr/bin/ranlib libutfcpp.a

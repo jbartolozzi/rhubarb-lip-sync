@@ -7,11 +7,6 @@ project(${appName})
 # Build and install main executable
 add_subdirectory(rhubarb)
 
-# Build and install extras
-add_subdirectory("extras/AdobeAfterEffects")
-add_subdirectory("extras/MagixVegas")
-add_subdirectory("extras/EsotericSoftwareSpine")
-
 # Install misc. files
 install(
 	FILES README.adoc LICENSE.md CHANGELOG.md

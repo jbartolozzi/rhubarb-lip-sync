@@ -1,0 +1,17 @@
+[build-system]
+requires = ["scikit-build-core>=0.10", "pybind11>=2.13"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "rhubarb-lip-sync"
+version = "1.14.0"
+description = "Automatic lip sync from voice recordings"
+requires-python = ">=3.8"
+license = {file = "LICENSE.md"}
+
+[tool.scikit-build]
+cmake.args = ["-DRHUBARB_BUILD_PYTHON=ON"]
+cmake.build-type = "Release"
+build.targets = ["_rhubarb"]
+wheel.packages = ["python/rhubarb"]
+install.components = ["python"]

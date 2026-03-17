@@ -1,0 +1,43 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/cross_correlation.c.o"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/cross_correlation.c.o.d"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/division_operations.c.o"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/division_operations.c.o.d"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/downsample_fast.c.o"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/downsample_fast.c.o.d"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/energy.c.o"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/energy.c.o.d"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/get_scaling_square.c.o"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/get_scaling_square.c.o.d"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/min_max_operations.c.o"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/min_max_operations.c.o.d"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/resample_48khz.c.o"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/resample_48khz.c.o.d"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/resample_by_2_internal.c.o"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/resample_by_2_internal.c.o.d"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/resample_fractional.c.o"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/resample_fractional.c.o.d"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/spl_init.c.o"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/spl_init.c.o.d"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/spl_inl.c.o"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/spl_inl.c.o.d"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/vector_scaling_operations.c.o"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/signal_processing/vector_scaling_operations.c.o.d"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/vad/vad_core.c.o"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/vad/vad_core.c.o.d"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/vad/vad_filterbank.c.o"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/vad/vad_filterbank.c.o.d"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/vad/vad_gmm.c.o"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/vad/vad_gmm.c.o.d"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/vad/vad_sp.c.o"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/vad/vad_sp.c.o.d"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/vad/webrtc_vad.c.o"
+  "CMakeFiles/webRtc.dir/lib/webrtc-8d2248ff/webrtc/common_audio/vad/webrtc_vad.c.o.d"
+  "libwebRtc.a"
+  "libwebRtc.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang C)
+  include(CMakeFiles/webRtc.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

@@ -1,0 +1,2 @@
+/usr/bin/ar qc librhubarb-core.a "CMakeFiles/rhubarb-core.dir/appInfo.cpp.o" "CMakeFiles/rhubarb-core.dir/src/core/Phone.cpp.o" "CMakeFiles/rhubarb-core.dir/src/core/Shape.cpp.o"
+/usr/bin/ranlib librhubarb-core.a

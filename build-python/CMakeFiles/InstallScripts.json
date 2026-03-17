@@ -1,0 +1,12 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-python/cmake_install.cmake",
+		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-python/rhubarb/cmake_install.cmake",
+		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-python/_deps/googletest-build/cmake_install.cmake",
+		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-python/_deps/googletest-build/googlemock/cmake_install.cmake",
+		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-python/_deps/googletest-build/googletest/cmake_install.cmake",
+		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-python/_deps/pybind11-build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

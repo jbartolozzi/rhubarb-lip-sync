@@ -111,6 +111,16 @@ set_target_properties(gtest PROPERTIES FOLDER lib)
 target_compile_options(gtest_main PRIVATE ${disableWarningsFlags})
 set_target_properties(gtest_main PROPERTIES FOLDER lib)
 
+# ... pybind11 (optional, for Python bindings)
+option(RHUBARB_BUILD_PYTHON "Build Python bindings" OFF)
+if(RHUBARB_BUILD_PYTHON)
+	FetchContent_Declare(pybind11
+		GIT_REPOSITORY https://github.com/pybind/pybind11.git
+		GIT_TAG v2.13.6
+	)
+	FetchContent_MakeAvailable(pybind11)
+endif()
+
 # ... GSL
 include_directories(SYSTEM "lib/gsl/include")
 
@@ -360,8 +370,6 @@ target_link_libraries(rhubarb-core
 
 # ... rhubarb-exporters
 add_library(rhubarb-exporters
-	src/exporters/DatExporter.cpp
-	src/exporters/DatExporter.h
 	src/exporters/Exporter.h
 	src/exporters/exporterTools.cpp
 	src/exporters/exporterTools.h
@@ -540,6 +548,43 @@ target_link_libraries(runTests
 	rhubarb-time
 	rhubarb-audio
 )
+
+# Define Python module
+if(RHUBARB_BUILD_PYTHON)
+	pybind11_add_module(_rhubarb
+		src/python/bindings.cpp
+	)
+	target_include_directories(_rhubarb PRIVATE "src")
+	target_link_libraries(_rhubarb PRIVATE
+		rhubarb-lib
+		rhubarb-exporters
+		rhubarb-recognition
+		rhubarb-tools
+	)
+	target_compile_options(_rhubarb PRIVATE ${enableWarningsFlags})
+
+	# Copy PocketSphinx resources next to the built module so it works at runtime
+	add_custom_command(TARGET _rhubarb POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+			"${CMAKE_CURRENT_SOURCE_DIR}/lib/pocketsphinx-rev13216/model/en-us"
+			"$<TARGET_FILE_DIR:_rhubarb>/res/sphinx"
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+			"${CMAKE_CURRENT_SOURCE_DIR}/lib/cmusphinx-en-us-5.2"
+			"$<TARGET_FILE_DIR:_rhubarb>/res/sphinx/acoustic-model"
+	)
+
+	install(TARGETS _rhubarb LIBRARY DESTINATION rhubarb COMPONENT python)
+	install(
+		DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/lib/pocketsphinx-rev13216/model/en-us/"
+		DESTINATION rhubarb/res/sphinx
+		COMPONENT python
+	)
+	install(
+		DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/lib/cmusphinx-en-us-5.2/"
+		DESTINATION rhubarb/res/sphinx/acoustic-model
+		COMPONENT python
+	)
+endif()
 
 # Copies the specified files in a post-build event, then installs them
 function(copy_and_install sourceGlob relativeTargetDirectory)

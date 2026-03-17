@@ -17,7 +17,6 @@
 #include "tools/textFiles.h"
 #include "lib/rhubarbLib.h"
 #include "ExportFormat.h"
-#include "exporters/DatExporter.h"
 #include "exporters/TsvExporter.h"
 #include "exporters/XmlExporter.h"
 #include "exporters/JsonExporter.h"
@@ -85,15 +84,8 @@ unique_ptr<Recognizer> createRecognizer(RecognizerType recognizerType) {
 	}
 }
 
-unique_ptr<Exporter> createExporter(
-	ExportFormat exportFormat,
-	const ShapeSet& targetShapeSet,
-	double datFrameRate,
-	bool datUsePrestonBlair
-) {
+unique_ptr<Exporter> createExporter(ExportFormat exportFormat) {
 	switch (exportFormat) {
-		case ExportFormat::Dat:
-			return make_unique<DatExporter>(targetShapeSet, datFrameRate, datUsePrestonBlair);
 		case ExportFormat::Tsv:
 			return make_unique<TsvExporter>();
 		case ExportFormat::Xml:
@@ -181,16 +173,6 @@ int main(int platformArgc, char* platformArgv[]) {
 		false, string(), "string", cmd
 	);
 
-	tclap::SwitchArg datUsePrestonBlair(
-		"", "datUsePrestonBlair", "Only for dat exporter: uses the Preston Blair mouth shape names.",
-		cmd, false
-	);
-
-	tclap::ValueArg<double> datFrameRate(
-		"", "datFrameRate", "Only for dat exporter: the desired frame rate.",
-		false, 24.0, "number", cmd
-	);
-
 	auto exportFormats = vector<ExportFormat>(ExportFormatConverter::get().getValues());
 	tclap::ValuesConstraint<ExportFormat> exportFormatConstraint(exportFormats);
 	tclap::ValueArg<ExportFormat> exportFormat(
@@ -241,12 +223,7 @@ int main(int platformArgc, char* platformArgv[]) {
 		path inputFilePath = u8path(inputFileName.getValue());
 		ShapeSet targetShapeSet = getTargetShapeSet(extendedShapes.getValue());
 
-		unique_ptr<Exporter> exporter = createExporter(
-			exportFormat.getValue(),
-			targetShapeSet,
-			datFrameRate.getValue(),
-			datUsePrestonBlair.getValue()
-		);
+		unique_ptr<Exporter> exporter = createExporter(exportFormat.getValue());
 
 		logging::log(StartEntry(inputFilePath));
 		logging::debugFormat("Command line: {}",

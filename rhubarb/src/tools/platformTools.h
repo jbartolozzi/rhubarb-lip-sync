@@ -7,6 +7,7 @@
 
 std::filesystem::path getBinPath();
 std::filesystem::path getBinDirectory();
+void setBinDirectory(const std::filesystem::path& path);
 std::filesystem::path getTempFilePath();
 
 std::tm getLocalTime(const time_t& time);

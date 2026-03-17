@@ -21,6 +21,10 @@ enum class Shape {
 
 	G,	// "F", "V"
 	H,	// "L"
+	I,	// Wide smile (EE as in b[ee])
+	J,	// Tongue between teeth (TH as in [th]ink, [th]at)
+	K,	// Pursed/protruded lips (SH as in [sh]ow, CH as in [ch]air)
+	L,	// Bunched tongue for R (as in [r]un)
 	X,	// Idle
 
 	EndSentinel
