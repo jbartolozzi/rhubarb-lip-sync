@@ -9,7 +9,7 @@ add_subdirectory(rhubarb)
 
 # Install misc. files
 install(
-	FILES README.adoc LICENSE.md CHANGELOG.md
+	FILES README.md LICENSE.md CHANGELOG.md
 	DESTINATION .
 )
 
