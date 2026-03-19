@@ -100,10 +100,10 @@ In addition to the six basic mouth shapes, there are seven *extended mouth shape
 | **F** | ![](img/lisa-F.png) | Puckered lips. This mouth shape is used for "UW" as in y**ou**, "OW" as in sh**ow**, and "W" as in **w**ay. |
 | **G** | ![](img/lisa-G.png) | Upper teeth touching the lower lip for "F" as in **f**or and "V" as in **v**ery. *Optional. Falls back to A.* |
 | **H** | ![](img/lisa-H.png) | Tongue raised behind the upper teeth for long "L" sounds. The mouth should be at least as far open as C, but not quite as far as D. *Optional. Falls back to C.* |
-| **I** | | Wide smile. Used for the "EE" sound as in b**ee** and sh**e**, as well as the ending of diphthongs like s**ay**, m**y**, and b**oy**. Differs from B by having the lips pulled back into a wide smile. *Optional. Falls back to B.* |
-| **J** | | Tongue between teeth. Used for "TH" as in **th**ink and "DH" as in **th**at, where the tongue tip is visible between the upper and lower teeth. *Optional. Falls back to B.* |
-| **K** | | Pursed, protruded lips. Used for "SH" as in **sh**ow, "ZH" as in mea**s**ure, "CH" as in **ch**air, and "JH" as in **j**ust. The lips are pushed forward and slightly rounded, distinct from the tighter pucker of F. *Optional. Falls back to F.* |
-| **L** | | Bunched tongue for the "R" sound as in **r**un and b**ir**d. The lips are slightly rounded and the tongue is bunched or retroflex. Visually similar to E but with more lip tension and a narrower opening. *Optional. Falls back to E.* |
+| **I** | ![](img/lisa-I.png) | Wide smile. Used for the "EE" sound as in b**ee** and sh**e**, as well as the ending of diphthongs like s**ay**, m**y**, and b**oy**. Differs from B by having the lips pulled back into a wide smile. *Optional. Falls back to B.* |
+| **J** | ![](img/lisa-J.png) | Tongue between teeth. Used for "TH" as in **th**ink and "DH" as in **th**at, where the tongue tip is visible between the upper and lower teeth. *Optional. Falls back to B.* |
+| **K** | ![](img/lisa-K.png) | Pursed, protruded lips. Used for "SH" as in **sh**ow, "ZH" as in mea**s**ure, "CH" as in **ch**air, and "JH" as in **j**ust. The lips are pushed forward and slightly rounded, distinct from the tighter pucker of F. *Optional. Falls back to F.* |
+| **L** | ![](img/lisa-L.png) | Bunched tongue for the "R" sound as in **r**un and b**ir**d. The lips are slightly rounded and the tongue is bunched or retroflex. Visually similar to E but with more lip tension and a narrower opening. *Optional. Falls back to E.* |
 | **X** | ![](img/lisa-X.png) | Idle position. Used for pauses in speech. This should be the same mouth drawing you use when your character is walking around without talking. Almost identical to A, but with slightly less pressure between the lips. *Optional. Falls back to A.* |
 
 ## How to run Rhubarb Lip Sync
