@@ -1,0 +1,3 @@
+/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/whisper-subbuild/CMakeFiles/whisper-populate.dir
+/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/whisper-subbuild/CMakeFiles/edit_cache.dir
+/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/whisper-subbuild/CMakeFiles/rebuild_cache.dir

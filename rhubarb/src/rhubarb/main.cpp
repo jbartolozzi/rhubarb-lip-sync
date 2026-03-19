@@ -30,6 +30,9 @@
 #include "RecognizerType.h"
 #include "recognition/PocketSphinxRecognizer.h"
 #include "recognition/PhoneticRecognizer.h"
+#if RHUBARB_HAS_WHISPER
+#include "recognition/WhisperRecognizer.h"
+#endif
 
 using std::exception;
 using std::string;
@@ -73,12 +76,22 @@ shared_ptr<logging::Sink> createFileSink(const path& path, logging::Level minLev
 	return make_shared<logging::LevelFilter>(FileSink, minLevel);
 }
 
-unique_ptr<Recognizer> createRecognizer(RecognizerType recognizerType) {
+unique_ptr<Recognizer> createRecognizer(
+	RecognizerType recognizerType,
+	[[maybe_unused]] const string& whisperModelPath = ""
+) {
 	switch (recognizerType) {
 		case RecognizerType::PocketSphinx:
 			return make_unique<PocketSphinxRecognizer>();
 		case RecognizerType::Phonetic:
 			return make_unique<PhoneticRecognizer>();
+#if RHUBARB_HAS_WHISPER
+		case RecognizerType::Whisper:
+			return make_unique<WhisperRecognizer>(
+				whisperModelPath.empty()
+					? std::filesystem::path()
+					: std::filesystem::u8path(whisperModelPath));
+#endif
 		default:
 			throw std::runtime_error("Unknown recognizer.");
 	}
@@ -196,6 +209,14 @@ int main(int platformArgc, char* platformArgv[]) {
 		false, RecognizerType::PocketSphinx, &recognizerConstraint, cmd
 	);
 
+	tclap::ValueArg<string> whisperModel(
+		"", "whisperModel",
+		"Path to a Whisper GGML model file (e.g., ggml-tiny.bin). "
+		"Only used when --recognizer is set to whisper. "
+		"If omitted, looks for res/whisper/ggml-tiny.bin next to the executable.",
+		false, string(), "string", cmd
+	);
+
 	tclap::UnlabeledValueArg<string> inputFileName(
 		"inputFile", "The input file. Must be a sound file in WAVE format.",
 		true, "", "string", cmd
@@ -254,7 +275,7 @@ int main(int platformArgc, char* platformArgv[]) {
 				dialogFile.isSet()
 					? readUtf8File(u8path(dialogFile.getValue()))
 					: boost::optional<string>(),
-				*createRecognizer(recognizerType.getValue()),
+				*createRecognizer(recognizerType.getValue(), whisperModel.getValue()),
 				targetShapeSet,
 				maxThreadCount.getValue(),
 				progressSink,

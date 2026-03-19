@@ -1,0 +1,17 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/cmake_install.cmake",
+		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/rhubarb/cmake_install.cmake",
+		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/googletest-build/cmake_install.cmake",
+		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/googletest-build/googlemock/cmake_install.cmake",
+		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/googletest-build/googletest/cmake_install.cmake",
+		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/whisper-build/cmake_install.cmake",
+		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/whisper-build/ggml/cmake_install.cmake",
+		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/whisper-build/ggml/src/cmake_install.cmake",
+		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/whisper-build/ggml/src/ggml-cpu/cmake_install.cmake",
+		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/whisper-build/ggml/src/ggml-blas/cmake_install.cmake",
+		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/whisper-build/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

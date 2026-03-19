@@ -4,7 +4,10 @@
 
 enum class RecognizerType {
 	PocketSphinx,
-	Phonetic
+	Phonetic,
+#if RHUBARB_HAS_WHISPER
+	Whisper,
+#endif
 };
 
 class RecognizerTypeConverter : public EnumConverter<RecognizerType> {

@@ -1,0 +1,2 @@
+/usr/bin/ar qc librhubarb-lib.a "CMakeFiles/rhubarb-lib.dir/src/lib/rhubarbLib.cpp.o"
+/usr/bin/ranlib librhubarb-lib.a

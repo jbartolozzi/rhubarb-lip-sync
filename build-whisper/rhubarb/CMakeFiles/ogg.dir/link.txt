@@ -1,0 +1,2 @@
+/usr/bin/ar qc libogg.a "CMakeFiles/ogg.dir/lib/ogg-1.3.3/src/bitwise.c.o" "CMakeFiles/ogg.dir/lib/ogg-1.3.3/src/framing.c.o"
+/usr/bin/ranlib libogg.a

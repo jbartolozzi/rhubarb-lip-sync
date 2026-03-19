@@ -38,14 +38,51 @@ for cue in cues:
     print(f"{cue.start:.2f} - {cue.end:.2f}: {cue.shape}")
 ```
 
-Parameters:
+### Using Whisper (recommended for best accuracy)
+
+The Whisper recognizer uses OpenAI's Whisper speech recognition model for more accurate word detection. Just pass a model name and it will be downloaded automatically on first use (~75MB for tiny, cached in `~/.cache/rhubarb/models/`):
+
+```python
+import rhubarb
+
+cues = rhubarb.animate(
+    "my-recording.wav",
+    recognizer="whisper",
+    whisper_model="tiny",           # auto-downloads on first use
+    extended_shapes="GHIJKLX",
+    framerate=12,
+)
+```
+
+You can also provide an absolute path to a model file you've already downloaded:
+
+```python
+cues = rhubarb.animate(
+    "my-recording.wav",
+    recognizer="whisper",
+    whisper_model="/path/to/ggml-tiny.bin",
+)
+```
+
+Available model sizes: `"tiny"` (~75MB), `"base"` (~142MB), `"small"` (~466MB). Larger models are more accurate but slower.
+
+### Parameters
 
 - `input_file` -- path to a WAVE (.wav) or Ogg Vorbis (.ogg) file
 - `dialog` -- optional dialog text to improve recognition accuracy
-- `recognizer` -- `"pocketSphinx"` (English, default) or `"phonetic"` (any language)
+- `recognizer` -- `"pocketSphinx"` (English, default), `"phonetic"` (any language), or `"whisper"` (English, best accuracy)
 - `extended_shapes` -- which extended shapes to use (default `"GHX"`, use `"GHIJKLX"` for all)
 - `threads` -- max worker threads (default `0` = all CPU cores)
 - `framerate` -- target animation frame rate in fps (default `0` = no frame snapping). When set, shape transitions are snapped to frame boundaries and minimum shape durations are adjusted so no shape is shorter than one frame.
+- `whisper_model` -- Whisper model name (`"tiny"`, `"base"`, `"small"`) to auto-download, or a file path to a GGML model. Only used with `recognizer="whisper"`.
+
+### Disabling Whisper at build time
+
+To skip building Whisper support (faster compile, smaller binary):
+
+```bash
+pip install . --config-settings='cmake.args=-DRHUBARB_BUILD_WHISPER=OFF'
+```
 
 ## Mouth shapes
 
@@ -86,7 +123,7 @@ Rhubarb Lip Sync is a command-line tool that is currently available for Windows,
 | Option | Description |
 |:---|:---|
 | *\<input file\>* | The audio file to be analyzed. This must be the last command-line argument. Supported file formats are WAVE (.wav) and Ogg Vorbis (.ogg). |
-| `-r` *\<recognizer\>*, `--recognizer` *\<recognizer\>* | Specifies how Rhubarb Lip Sync recognizes speech within the recording. Options: `pocketSphinx` (use for English recordings), `phonetic` (use for non-English recordings). For details, see [Recognizers](#recognizers). Default: `pocketSphinx` |
+| `-r` *\<recognizer\>*, `--recognizer` *\<recognizer\>* | Specifies how Rhubarb Lip Sync recognizes speech within the recording. Options: `pocketSphinx` (English, default), `phonetic` (any language), `whisper` (English, best accuracy -- requires model file). For details, see [Recognizers](#recognizers). |
 | `-f` *\<format\>*, `--exportFormat` *\<format\>* | The export format. Options: `tsv` (tab-separated values), `xml`, `json`. Default: `tsv` |
 | `-d` *\<path\>*, `--dialogFile` *\<path\>* | Provide the dialog text to get more reliable results. Specify the path to a plain-text file (ASCII or UTF-8) containing the dialog. Rhubarb Lip Sync will prefer words and phrases from this file while still performing its own recognition. It is always a good idea to specify the dialog text. |
 | `--extendedShapes` *\<string\>* | Which extended mouth shapes to use. For example, `GHIJKLX` for all, or `""` for basic shapes only. Default: `GHX` |
@@ -105,10 +142,11 @@ Rhubarb Lip Sync is a command-line tool that is currently available for Windows,
 | `--logFile` *\<path\>* | Creates a log file with diagnostic information at the specified path. |
 | `--logLevel` *\<level\>* | Sets the log level for the log file. Default: `debug` |
 | `--threads` *\<number\>* | Max worker threads. Default: number of CPU cores. |
+| `--whisperModel` *\<path\>* | Path to a Whisper GGML model file (e.g. `ggml-tiny.bin`). Only used with `--recognizer whisper`. Download models from https://huggingface.co/ggerganov/whisper.cpp. |
 
 ## Recognizers
 
-The first step in processing an audio file is determining what is being said. Rhubarb Lip Sync uses speech recognition to figure out what sound is being said at what point in time. You can choose between two recognizers:
+The first step in processing an audio file is determining what is being said. Rhubarb Lip Sync uses speech recognition to figure out what sound is being said at what point in time. You can choose between three recognizers:
 
 ### PocketSphinx
 
@@ -117,6 +155,19 @@ PocketSphinx is an open-source speech recognition library that generally gives g
 ### Phonetic
 
 Rhubarb Lip Sync also comes with a phonetic recognizer. *Phonetic* means that this recognizer won't try to understand entire (English) words and phrases. Instead, it will recognize individual sounds and syllables. The results are usually less precise than those from the PocketSphinx recognizer. The advantage is that this recognizer is language-independent. Use it if your recordings are not in English.
+
+### Whisper
+
+The Whisper recognizer uses [whisper.cpp](https://github.com/ggml-org/whisper.cpp), a C++ port of OpenAI's Whisper speech recognition model. It provides significantly more accurate word recognition than PocketSphinx, especially for natural conversational speech, varied accents, and noisy recordings. Words are then mapped to phonemes using the CMU pronunciation dictionary for lip sync animation.
+
+Whisper requires a model file. The `tiny` model (~75MB) is recommended for a good balance of speed and accuracy. Download models from https://huggingface.co/ggerganov/whisper.cpp.
+
+```bash
+# Example usage
+rhubarb -r whisper --whisperModel path/to/ggml-tiny.bin -o output.txt recording.wav
+```
+
+To build without Whisper support, configure CMake with `-DRHUBARB_BUILD_WHISPER=OFF`.
 
 ## Output formats
 
@@ -233,6 +284,8 @@ Then:
 
 To also build the Python bindings, add `-DRHUBARB_BUILD_PYTHON=ON` to the cmake configure step.
 
+Whisper support is enabled by default. To disable it, add `-DRHUBARB_BUILD_WHISPER=OFF`.
+
 ## Changes from upstream
 
 This fork includes the following changes on top of the original [DanielSWolf/rhubarb-lip-sync](https://github.com/DanielSWolf/rhubarb-lip-sync):
@@ -246,6 +299,7 @@ This fork includes the following changes on top of the original [DanielSWolf/rhu
   - **K** -- Pursed, protruded lips for "SH", "CH", "ZH", "JH" sounds
   - **L** -- Bunched tongue for "R" sounds
 - **Target framerate** (`--framerate` / `framerate=`) -- Snaps all shape transitions to frame boundaries and ensures no shape is shorter than one frame. For example, `--framerate 12` aligns all transitions to multiples of 1/12s.
+- **Whisper speech recognition** (`-r whisper`) -- Optional recognizer using [whisper.cpp](https://github.com/ggml-org/whisper.cpp) for significantly more accurate word detection than PocketSphinx. Requires a model file download (~75MB for tiny). Includes a Python helper `rhubarb.download_whisper_model()` for easy model management.
 
 ### Animation accuracy improvements
 

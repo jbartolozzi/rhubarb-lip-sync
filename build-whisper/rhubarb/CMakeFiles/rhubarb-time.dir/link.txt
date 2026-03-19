@@ -1,0 +1,2 @@
+/usr/bin/ar qc librhubarb-time.a "CMakeFiles/rhubarb-time.dir/src/time/centiseconds.cpp.o" "CMakeFiles/rhubarb-time.dir/src/time/TimeRange.cpp.o"
+/usr/bin/ranlib librhubarb-time.a

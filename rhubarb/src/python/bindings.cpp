@@ -7,6 +7,9 @@
 #include "core/Shape.h"
 #include "recognition/PocketSphinxRecognizer.h"
 #include "recognition/PhoneticRecognizer.h"
+#if RHUBARB_HAS_WHISPER
+#include "recognition/WhisperRecognizer.h"
+#endif
 #include "animation/targetShapeSet.h"
 #include "tools/progress.h"
 #include "tools/parallel.h"
@@ -37,15 +40,31 @@ ShapeSet parseShapeSet(const string& extendedShapesString) {
 	return result;
 }
 
-unique_ptr<Recognizer> createRecognizer(const string& recognizerName) {
+unique_ptr<Recognizer> createRecognizer(
+	const string& recognizerName,
+	const string& whisperModelPath = ""
+) {
 	if (recognizerName == "pocketSphinx") {
 		return make_unique<PocketSphinxRecognizer>();
 	}
 	if (recognizerName == "phonetic") {
 		return make_unique<PhoneticRecognizer>();
 	}
+#if RHUBARB_HAS_WHISPER
+	if (recognizerName == "whisper") {
+		return make_unique<WhisperRecognizer>(
+			whisperModelPath.empty()
+				? fs::path()
+				: fs::u8path(whisperModelPath));
+	}
+#endif
 	throw std::invalid_argument(
-		"Unknown recognizer: '" + recognizerName + "'. Use 'pocketSphinx' or 'phonetic'."
+		"Unknown recognizer: '" + recognizerName + "'."
+		" Use 'pocketSphinx', 'phonetic'"
+#if RHUBARB_HAS_WHISPER
+		", or 'whisper'"
+#endif
+		"."
 	);
 }
 
@@ -84,13 +103,14 @@ vector<MouthCue> animate(
 	const string& recognizer,
 	const string& extendedShapes,
 	int threads,
-	int framerate
+	int framerate,
+	const string& whisperModel
 ) {
 	initResourcePath();
 
 	int actualThreads = threads > 0 ? threads : getProcessorCoreCount();
 
-	auto rec = createRecognizer(recognizer);
+	auto rec = createRecognizer(recognizer, whisperModel);
 	ShapeSet targetShapeSet = parseShapeSet(extendedShapes);
 
 	boost::optional<string> dialogOpt;
@@ -150,17 +170,21 @@ PYBIND11_MODULE(_rhubarb, m) {
 		py::arg("extended_shapes") = "GHX",
 		py::arg("threads") = 0,
 		py::arg("framerate") = 0,
+		py::arg("whisper_model") = "",
 		R"doc(
 		Analyze an audio file and generate lip sync mouth cues.
 
 		Args:
 			input_file: Path to a WAVE (.wav) or Ogg Vorbis (.ogg) audio file.
 			dialog: Optional dialog text to improve recognition accuracy.
-			recognizer: Speech recognizer to use: 'pocketSphinx' (English) or 'phonetic' (any language).
+			recognizer: Speech recognizer to use: 'pocketSphinx' (English),
+				'phonetic' (any language), or 'whisper' (English, requires model file).
 			extended_shapes: Extended mouth shapes to use. Default 'GHX'. Use '' for basic shapes only (A-F).
 			threads: Max worker threads. 0 means use all available CPU cores.
 			framerate: Target animation frame rate in fps (e.g. 12, 24). Shape transitions
 				are snapped to frame boundaries. 0 means no frame snapping (default).
+			whisper_model: Path to a Whisper GGML model file. Only used with recognizer='whisper'.
+				If empty, looks for the model in the default resource directory.
 
 		Returns:
 			List of MouthCue objects with start, end (seconds), and shape attributes.

@@ -111,6 +111,22 @@ set_target_properties(gtest PROPERTIES FOLDER lib)
 target_compile_options(gtest_main PRIVATE ${disableWarningsFlags})
 set_target_properties(gtest_main PROPERTIES FOLDER lib)
 
+# ... whisper.cpp (optional, for Whisper speech recognition)
+option(RHUBARB_BUILD_WHISPER "Build with Whisper speech recognition" ON)
+if(RHUBARB_BUILD_WHISPER)
+	FetchContent_Declare(whisper
+		GIT_REPOSITORY https://github.com/ggml-org/whisper.cpp.git
+		GIT_TAG v1.7.4
+	)
+	set(WHISPER_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+	set(WHISPER_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+	set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+	set(GGML_METAL OFF CACHE BOOL "" FORCE)
+	set(GGML_CUDA OFF CACHE BOOL "" FORCE)
+	set(GGML_OPENMP OFF CACHE BOOL "" FORCE)
+	FetchContent_MakeAvailable(whisper)
+endif()
+
 # ... pybind11 (optional, for Python bindings)
 option(RHUBARB_BUILD_PYTHON "Build Python bindings" OFF)
 if(RHUBARB_BUILD_PYTHON)
@@ -424,6 +440,8 @@ target_link_libraries(rhubarb-logging
 
 # ... rhubarb-recognition
 add_library(rhubarb-recognition
+	src/recognition/cmuDictionary.cpp
+	src/recognition/cmuDictionary.h
 	src/recognition/g2p.cpp
 	src/recognition/g2p.h
 	src/recognition/languageModels.cpp
@@ -446,6 +464,14 @@ target_link_libraries(rhubarb-recognition
 	rhubarb-core
 	rhubarb-logging
 )
+if(RHUBARB_BUILD_WHISPER)
+	target_sources(rhubarb-recognition PRIVATE
+		src/recognition/WhisperRecognizer.cpp
+		src/recognition/WhisperRecognizer.h
+	)
+	target_link_libraries(rhubarb-recognition whisper)
+	target_compile_definitions(rhubarb-recognition PUBLIC RHUBARB_HAS_WHISPER=1)
+endif()
 
 # ... rhubarb-time
 add_library(rhubarb-time

@@ -1,0 +1,2 @@
+/usr/bin/ar qc librhubarb-logging.a "CMakeFiles/rhubarb-logging.dir/src/logging/Entry.cpp.o" "CMakeFiles/rhubarb-logging.dir/src/logging/formatters.cpp.o" "CMakeFiles/rhubarb-logging.dir/src/logging/Level.cpp.o" "CMakeFiles/rhubarb-logging.dir/src/logging/logging.cpp.o" "CMakeFiles/rhubarb-logging.dir/src/logging/sinks.cpp.o"
+/usr/bin/ranlib librhubarb-logging.a

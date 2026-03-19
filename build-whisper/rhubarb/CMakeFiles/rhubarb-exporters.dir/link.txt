@@ -1,0 +1,2 @@
+/usr/bin/ar qc librhubarb-exporters.a "CMakeFiles/rhubarb-exporters.dir/src/exporters/exporterTools.cpp.o" "CMakeFiles/rhubarb-exporters.dir/src/exporters/JsonExporter.cpp.o" "CMakeFiles/rhubarb-exporters.dir/src/exporters/TsvExporter.cpp.o" "CMakeFiles/rhubarb-exporters.dir/src/exporters/XmlExporter.cpp.o"
+/usr/bin/ranlib librhubarb-exporters.a
