@@ -83,7 +83,8 @@ vector<MouthCue> animate(
 	const string& dialog,
 	const string& recognizer,
 	const string& extendedShapes,
-	int threads
+	int threads,
+	int framerate
 ) {
 	initResourcePath();
 
@@ -107,7 +108,8 @@ vector<MouthCue> animate(
 			*rec,
 			targetShapeSet,
 			actualThreads,
-			progressSink);
+			progressSink,
+			framerate);
 	}();
 
 	vector<MouthCue> result;
@@ -147,6 +149,7 @@ PYBIND11_MODULE(_rhubarb, m) {
 		py::arg("recognizer") = "pocketSphinx",
 		py::arg("extended_shapes") = "GHX",
 		py::arg("threads") = 0,
+		py::arg("framerate") = 0,
 		R"doc(
 		Analyze an audio file and generate lip sync mouth cues.
 
@@ -156,6 +159,8 @@ PYBIND11_MODULE(_rhubarb, m) {
 			recognizer: Speech recognizer to use: 'pocketSphinx' (English) or 'phonetic' (any language).
 			extended_shapes: Extended mouth shapes to use. Default 'GHX'. Use '' for basic shapes only (A-F).
 			threads: Max worker threads. 0 means use all available CPU cores.
+			framerate: Target animation frame rate in fps (e.g. 12, 24). Shape transitions
+				are snapped to frame boundaries. 0 means no frame snapping (default).
 
 		Returns:
 			List of MouthCue objects with start, end (seconds), and shape attributes.

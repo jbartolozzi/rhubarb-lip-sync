@@ -53,17 +53,24 @@ struct ShapeReduction {
 	Shape shape;
 };
 
+// Computes the minimum shape duration based on the target framerate.
+// Without a framerate, defaults to 7cs. With a framerate, uses whichever is larger:
+// the default or one frame duration (rounded up), so shapes are never shorter than one frame.
+centiseconds getMinShapeDuration(int framerate) {
+	const centiseconds defaultMinShapeDuration = 7_cs;
+	const centiseconds frameMinShapeDuration =
+		framerate > 0 ? centiseconds((100 + framerate - 1) / framerate) : 0_cs;
+	return std::max(defaultMinShapeDuration, frameMinShapeDuration);
+}
+
 // Returns a time range of candidate shapes for the next shape to draw.
 // Guaranteed to be non-empty.
 TimeRange getNextMinimalCandidateRange(const JoiningContinuousTimeline<Shape>& sourceShapes,
-	const TimeRange targetRange, const centiseconds writePosition) {
+	const TimeRange targetRange, const centiseconds writePosition,
+	const centiseconds minShapeDuration) {
 	if (sourceShapes.empty()) {
 		throw std::invalid_argument("Cannot determine candidate range for empty source timeline.");
 	}
-
-	// Too short, and and we get flickering. Too long, and too many shapes are lost.
-	// Good values turn out to be 5 to 7 cs, with 7 cs sometimes looking just marginally better.
-	const centiseconds minShapeDuration = 7_cs;
 
 	// If the remaining time can hold more than one shape, but not two: split it evenly
 	const centiseconds remainingTargetDuration = writePosition - targetRange.getStart();
@@ -97,13 +104,14 @@ TimeRange getNextMinimalCandidateRange(const JoiningContinuousTimeline<Shape>& s
 ShapeReduction getNextShapeReduction(
 	const JoiningContinuousTimeline<Shape>& sourceShapes,
 	const TimeRange targetRange,
-	centiseconds writePosition
+	centiseconds writePosition,
+	const centiseconds minShapeDuration
 ) {
 	// Determine the next time range of candidate shapes. Consider two scenarios:
 
 	// ... the shortest-possible candidate range
 	const ShapeReduction minReduction(sourceShapes,
-		getNextMinimalCandidateRange(sourceShapes, targetRange, writePosition));
+		getNextMinimalCandidateRange(sourceShapes, targetRange, writePosition, minShapeDuration));
 
 	// ... a candidate range extended to the left to fully encompass its left-most shape
 	const ShapeReduction extendedReduction(sourceShapes,
@@ -117,7 +125,7 @@ ShapeReduction getNextShapeReduction(
 	// range now
 	const ShapeReduction nextReduction(
 		sourceShapes,
-		getNextMinimalCandidateRange(sourceShapes, targetRange, minReduction.sourceShapes.getRange().getStart())
+		getNextMinimalCandidateRange(sourceShapes, targetRange, minReduction.sourceShapes.getRange().getStart(), minShapeDuration)
 	);
 
 	const bool minEqualsExtended = minReduction.shape == extendedReduction.shape;
@@ -130,7 +138,7 @@ ShapeReduction getNextShapeReduction(
 // Modifies the timing of the given animation to fit into the specified target time range without
 // jitter.
 JoiningContinuousTimeline<Shape> retime(const JoiningContinuousTimeline<Shape>& sourceShapes,
-	const TimeRange targetRange) {
+	const TimeRange targetRange, const centiseconds minShapeDuration) {
 	logTimedEvent("segment", targetRange, getShapesString(sourceShapes));
 
 	JoiningContinuousTimeline<Shape> result(targetRange, Shape::X);
@@ -142,7 +150,7 @@ JoiningContinuousTimeline<Shape> retime(const JoiningContinuousTimeline<Shape>& 
 
 		// Decide which shape to show next, possibly discarding short shapes
 		const ShapeReduction shapeReduction =
-			getNextShapeReduction(sourceShapes, targetRange, writePosition);
+			getNextShapeReduction(sourceShapes, targetRange, writePosition, minShapeDuration);
 
 		// Determine how long to display the shape
 		TimeRange targetShapeRange(shapeReduction.sourceShapes.getRange());
@@ -164,10 +172,11 @@ JoiningContinuousTimeline<Shape> retime(const JoiningContinuousTimeline<Shape>& 
 JoiningContinuousTimeline<Shape> retime(
 	const JoiningContinuousTimeline<Shape>& animation,
 	TimeRange sourceRange,
-	TimeRange targetRange
+	TimeRange targetRange,
+	const centiseconds minShapeDuration
 ) {
 	const auto sourceShapes = JoiningContinuousTimeline<Shape>(sourceRange, Shape::X, animation);
-	return retime(sourceShapes, targetRange);
+	return retime(sourceShapes, targetRange, minShapeDuration);
 }
 
 enum class MouthState {
@@ -176,7 +185,9 @@ enum class MouthState {
 	Open
 };
 
-JoiningContinuousTimeline<Shape> optimizeTiming(const JoiningContinuousTimeline<Shape>& animation) {
+JoiningContinuousTimeline<Shape> optimizeTiming(const JoiningContinuousTimeline<Shape>& animation, int framerate) {
+	const centiseconds minShapeDuration = getMinShapeDuration(framerate);
+
 	// Identify segments with idle, closed, and open mouth shapes
 	JoiningContinuousTimeline<MouthState> segments(animation.getRange(), MouthState::Idle);
 	for (const auto& timedShape : animation) {
@@ -208,7 +219,7 @@ JoiningContinuousTimeline<Shape> optimizeTiming(const JoiningContinuousTimeline<
 		if (resultStart - segmentIt->getStart() >= minSegmentDuration) {
 			// The segment is long enough; we don't have to extend it to the left.
 			const TimeRange targetRange(segmentIt->getStart(), resultStart);
-			const auto retimedSegment = retime(animation, segmentIt->getTimeRange(), targetRange);
+			const auto retimedSegment = retime(animation, segmentIt->getTimeRange(), targetRange, minShapeDuration);
 			for (const auto& timedShape : retimedSegment) {
 				result.set(timedShape);
 			}
@@ -248,7 +259,7 @@ JoiningContinuousTimeline<Shape> optimizeTiming(const JoiningContinuousTimeline<
 					remainingShortSegmentCount;
 				const TimeRange segmentTargetRange(resultStart - segmentDuration, resultStart);
 				const auto retimedSegment =
-					retime(animation, shortSegmentIt->getTimeRange(), segmentTargetRange);
+					retime(animation, shortSegmentIt->getTimeRange(), segmentTargetRange, minShapeDuration);
 				for (const auto& timedShape : retimedSegment) {
 					result.set(timedShape);
 				}

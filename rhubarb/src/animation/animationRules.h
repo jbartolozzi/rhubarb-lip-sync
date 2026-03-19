@@ -33,4 +33,8 @@ boost::optional<std::pair<Shape, TweenTiming>> getTween(Shape first, Shape secon
 // The resulting timeline will always cover the entire duration of the phone (starting at 0 cs).
 // It may extend into the negative time range if animation is required prior to the sound being
 // heard.
-Timeline<ShapeSet> getShapeSets(Phone phone, centiseconds duration, centiseconds previousDuration);
+// When nextPhone is provided, consonant shape sets are biased toward shapes that anticipate the
+// following vowel's lip posture (coarticulation).
+Timeline<ShapeSet> getShapeSets(
+	Phone phone, centiseconds duration, centiseconds previousDuration,
+	boost::optional<Phone> nextPhone = boost::none);

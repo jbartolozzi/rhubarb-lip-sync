@@ -14,11 +14,12 @@ JoiningContinuousTimeline<Shape> animateAudioClip(
 	const Recognizer& recognizer,
 	const ShapeSet& targetShapeSet,
 	int maxThreadCount,
-	ProgressSink& progressSink)
+	ProgressSink& progressSink,
+	int framerate)
 {
 	const BoundedTimeline<Phone> phones =
 		recognizer.recognizePhones(audioClip, dialog, maxThreadCount, progressSink);
-	JoiningContinuousTimeline<Shape> result = animate(phones, targetShapeSet);
+	JoiningContinuousTimeline<Shape> result = animate(phones, targetShapeSet, framerate);
 	return result;
 }
 
@@ -28,8 +29,9 @@ JoiningContinuousTimeline<Shape> animateWaveFile(
 	const Recognizer& recognizer,
 	const ShapeSet& targetShapeSet,
 	int maxThreadCount,
-	ProgressSink& progressSink)
+	ProgressSink& progressSink,
+	int framerate)
 {
 	const auto audioClip = createAudioFileClip(filePath);
-	return animateAudioClip(*audioClip, dialog, recognizer, targetShapeSet, maxThreadCount, progressSink);
+	return animateAudioClip(*audioClip, dialog, recognizer, targetShapeSet, maxThreadCount, progressSink, framerate);
 }

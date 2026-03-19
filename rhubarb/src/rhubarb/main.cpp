@@ -163,6 +163,15 @@ int main(int platformArgc, char* platformArgv[]) {
 		false, getProcessorCoreCount(), "number", cmd
 	);
 
+	tclap::ValueArg<int> framerate(
+		"", "framerate",
+		"Target animation frame rate in fps (e.g. 12, 24, 30). "
+		"When set, shape transitions are snapped to frame boundaries "
+		"and minimum shape durations are adjusted to match. "
+		"0 means no frame snapping (default).",
+		false, 0, "number", cmd
+	);
+
 	tclap::ValueArg<string> extendedShapes(
 		"", "extendedShapes", "All extended, optional shapes to use.",
 		false, "GHX", "string", cmd
@@ -220,6 +229,9 @@ int main(int platformArgc, char* platformArgv[]) {
 		if (maxThreadCount.getValue() < 1) {
 			throw std::runtime_error("Thread count must be 1 or higher.");
 		}
+		if (framerate.getValue() < 0) {
+			throw std::runtime_error("Frame rate must be 0 (disabled) or a positive number.");
+		}
 		path inputFilePath = u8path(inputFileName.getValue());
 		ShapeSet targetShapeSet = getTargetShapeSet(extendedShapes.getValue());
 
@@ -245,7 +257,8 @@ int main(int platformArgc, char* platformArgv[]) {
 				*createRecognizer(recognizerType.getValue()),
 				targetShapeSet,
 				maxThreadCount.getValue(),
-				progressSink);
+				progressSink,
+				framerate.getValue());
 			logging::info("Done animating.");
 
 			// Export animation

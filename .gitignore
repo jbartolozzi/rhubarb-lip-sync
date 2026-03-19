@@ -1,3 +1,4 @@
 .vs/
 build/
 *.user
+update_shots.py

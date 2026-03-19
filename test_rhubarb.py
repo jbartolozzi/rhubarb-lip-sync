@@ -5,6 +5,7 @@ cues = rhubarb.animate(
     "audio_samples/sample_audio.wav",
     dialog=dialog,
     extended_shapes="GHIJKLX",
+    framerate=12,
 )
 
 for cue in cues:

@@ -7,5 +7,6 @@
 
 JoiningContinuousTimeline<Shape> animate(
 	const BoundedTimeline<Phone>& phones,
-	const ShapeSet& targetShapeSet
+	const ShapeSet& targetShapeSet,
+	int framerate = 0
 );

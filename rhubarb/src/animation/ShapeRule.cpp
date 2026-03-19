@@ -58,13 +58,26 @@ ContinuousTimeline<ShapeRule> getShapeRules(const BoundedTimeline<Phone>& phones
 		{ { Shape::X }, boost::none, { 0_cs, 0_cs } }
 	);
 	centiseconds previousDuration = 0_cs;
-	for (const auto& timedPhone : continuousPhones) {
+	for (auto it = continuousPhones.begin(); it != continuousPhones.end(); ++it) {
+		const auto& timedPhone = *it;
 		optional<Phone> phone = timedPhone.getValue();
 		const centiseconds duration = timedPhone.getDuration();
 
 		if (phone) {
+			// Look ahead for next phone (for coarticulation)
+			optional<Phone> nextPhone;
+			auto nextIt = std::next(it);
+			while (nextIt != continuousPhones.end()) {
+				if (nextIt->getValue()) {
+					nextPhone = nextIt->getValue();
+					break;
+				}
+				++nextIt;
+			}
+
 			// Animate one phone
-			Timeline<ShapeSet> phoneShapeSets = getShapeSets(*phone, duration, previousDuration);
+			Timeline<ShapeSet> phoneShapeSets =
+				getShapeSets(*phone, duration, previousDuration, nextPhone);
 
 			// Result timing is relative to phone. Make absolute.
 			phoneShapeSets.shift(timedPhone.getStart());

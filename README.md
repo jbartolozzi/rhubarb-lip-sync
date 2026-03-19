@@ -4,11 +4,9 @@
 >
 > - **Python bindings** -- use Rhubarb as a library via `pip install` and `import rhubarb`
 > - **Four new extended mouth shapes** (I, J, K, L) for more detailed animation (wide smile, tongue-between-teeth, pursed lips, R sound)
+> - **Target framerate support** (`--framerate`) -- snaps shape transitions to frame boundaries for cleaner animation at any fps
+> - **Improved animation accuracy** -- consonant-vowel coarticulation, per-diphthong timing, expanded tween coverage, better static segment breaking, and expanded pronunciation fixes
 > - Removed third-party integrations (Adobe After Effects, Moho, Spine, Vegas Pro) to simplify the codebase
-
----
-
-<p align="center"><img src="img/logo.png" alt="Rhubarb Lip Sync logo"></p>
 
 ---
 
@@ -33,6 +31,7 @@ cues = rhubarb.animate(
     "my-recording.wav",
     dialog="Optional dialog text",
     extended_shapes="GHIJKLX",  # enable all shapes
+    framerate=12,               # snap to 12 fps frame boundaries
 )
 
 for cue in cues:
@@ -46,12 +45,7 @@ Parameters:
 - `recognizer` -- `"pocketSphinx"` (English, default) or `"phonetic"` (any language)
 - `extended_shapes` -- which extended shapes to use (default `"GHX"`, use `"GHIJKLX"` for all)
 - `threads` -- max worker threads (default `0` = all CPU cores)
-
-## Demo video
-
-Click the image for a demo video.
-
-[![Demo video](http://img.youtube.com/vi/zzdPSFJRlEo/0.jpg)](https://www.youtube.com/watch?v=zzdPSFJRlEo)
+- `framerate` -- target animation frame rate in fps (default `0` = no frame snapping). When set, shape transitions are snapped to frame boundaries and minimum shape durations are adjusted so no shape is shorter than one frame.
 
 ## Mouth shapes
 
@@ -96,6 +90,7 @@ Rhubarb Lip Sync is a command-line tool that is currently available for Windows,
 | `-f` *\<format\>*, `--exportFormat` *\<format\>* | The export format. Options: `tsv` (tab-separated values), `xml`, `json`. Default: `tsv` |
 | `-d` *\<path\>*, `--dialogFile` *\<path\>* | Provide the dialog text to get more reliable results. Specify the path to a plain-text file (ASCII or UTF-8) containing the dialog. Rhubarb Lip Sync will prefer words and phrases from this file while still performing its own recognition. It is always a good idea to specify the dialog text. |
 | `--extendedShapes` *\<string\>* | Which extended mouth shapes to use. For example, `GHIJKLX` for all, or `""` for basic shapes only. Default: `GHX` |
+| `--framerate` *\<number\>* | Target animation frame rate in fps (e.g. `12`, `24`, `30`). When set, shape transitions are snapped to frame boundaries and minimum shape durations are adjusted to match. `0` means no frame snapping. Default: `0` |
 | `-o`, `--output` *\<output file\>* | The output file path. If omitted, results are written to `stdout`. |
 | `--version` | Displays version information and exits. |
 | `-h`, `--help` | Displays usage information and exits. |
@@ -237,6 +232,32 @@ Then:
 4. `cmake --build . --config Release`
 
 To also build the Python bindings, add `-DRHUBARB_BUILD_PYTHON=ON` to the cmake configure step.
+
+## Changes from upstream
+
+This fork includes the following changes on top of the original [DanielSWolf/rhubarb-lip-sync](https://github.com/DanielSWolf/rhubarb-lip-sync):
+
+### New features
+
+- **Python bindings** -- `pip install .` and `import rhubarb` to use Rhubarb as a Python library. Built with pybind11.
+- **Four new extended mouth shapes** (I, J, K, L):
+  - **I** -- Wide smile for "EE" and diphthong endings (s**ay**, m**y**, b**oy**)
+  - **J** -- Tongue between teeth for "TH"/"DH" sounds
+  - **K** -- Pursed, protruded lips for "SH", "CH", "ZH", "JH" sounds
+  - **L** -- Bunched tongue for "R" sounds
+- **Target framerate** (`--framerate` / `framerate=`) -- Snaps all shape transitions to frame boundaries and ensures no shape is shorter than one frame. For example, `--framerate 12` aligns all transitions to multiples of 1/12s.
+
+### Animation accuracy improvements
+
+- **Consonant-vowel coarticulation** -- Consonants with multiple shape options (T/D, K/G, N, NG, L, Y, etc.) now look ahead at the following vowel and prefer shapes that anticipate its lip posture. For example, a "T" before "OO" will favor a rounded shape rather than a flat one.
+- **Per-diphthong timing** -- Diphthongs no longer use a universal 60/40 split. Each diphthong has its own ratio tuned to its articulation: EY (70/30), AY (55/45), OW (50/50), AW (55/45), OY (60/40).
+- **Expanded tween coverage** -- Added 12 new shape-to-shape tween rules for high-effort transitions (F/K to/from D, F/K to A/X, I to/from F/K) that previously had jarring jumps with no intermediate shape.
+- **Better static segment breaking** -- Long stretches of a single mouth shape are now broken up for shapes C, D, E, F, and I, not just B as before.
+- **Expanded pronunciation fixes** -- Added preferred pronunciation overrides for 13 common function words (a, the, for, or, was, been, can, our, your, because) to produce more visually distinct animation.
+
+### Other changes
+
+- Removed third-party integrations (Adobe After Effects, Moho, Spine, Vegas Pro) to simplify the codebase.
 
 ## Credits
 

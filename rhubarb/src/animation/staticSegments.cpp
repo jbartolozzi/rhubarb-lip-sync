@@ -65,10 +65,19 @@ ShapeRule getChangedShapeRule(const ShapeRule& rule) {
 	assert(canChange(rule));
 
 	ShapeRule result(rule);
-	// So far, I've only encountered B as a static shape.
-	// If there is ever a problem with another static shape, this function can easily be extended.
+	// Substitute similar-but-distinct shapes to break up long static segments.
 	if (rule.shapeSet == ShapeSet { Shape::B }) {
 		result.shapeSet = { Shape::C };
+	} else if (rule.shapeSet == ShapeSet { Shape::C }) {
+		result.shapeSet = { Shape::D };
+	} else if (rule.shapeSet == ShapeSet { Shape::I }) {
+		result.shapeSet = { Shape::B };
+	} else if (rule.shapeSet == ShapeSet { Shape::E }) {
+		result.shapeSet = { Shape::C };
+	} else if (rule.shapeSet == ShapeSet { Shape::D }) {
+		result.shapeSet = { Shape::C };
+	} else if (rule.shapeSet == ShapeSet { Shape::F }) {
+		result.shapeSet = { Shape::E };
 	}
 	return result;
 }

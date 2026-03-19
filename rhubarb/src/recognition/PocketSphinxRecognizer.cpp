@@ -240,7 +240,21 @@ string fixPronunciation(const string& word) {
 		{ "to(3)", "to" },
 		{ "today(2)", "today" },
 		{ "tomorrow(2)", "tomorrow" },
-		{ "tonight(2)", "tonight" }
+		{ "tonight(2)", "tonight" },
+		// Common function words: prefer the fuller pronunciation for more distinct animation
+		{ "a(2)", "a" },             // AH (reduced) preferred over EY (letter name)
+		{ "the(2)", "the" },         // DH AH (unstressed) preferred over DH IY
+		{ "for(2)", "for" },         // F AO R (full) preferred over F ER (reduced)
+		{ "for(3)", "for" },
+		{ "or(2)", "or" },           // AO R preferred over ER (reduced)
+		{ "was(2)", "was" },         // W AA Z (full) preferred over W AH Z (reduced)
+		{ "been(2)", "been" },       // B IH N preferred over B AH N
+		{ "can(2)", "can" },         // K AE N (full) preferred over K AH N (reduced)
+		{ "our(2)", "our" },         // AW ER (diphthong) preferred over AW R
+		{ "our(3)", "our" },
+		{ "your(2)", "your" },       // Y AO R preferred over Y UH R
+		{ "because(2)", "because" }, // B IH K AO Z preferred over reduced forms
+		{ "because(3)", "because" },
 	};
 
 	const auto pair = replacements.find(word);

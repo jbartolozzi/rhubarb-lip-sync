@@ -14,7 +14,8 @@ JoiningContinuousTimeline<Shape> animateAudioClip(
 	const Recognizer& recognizer,
 	const ShapeSet& targetShapeSet,
 	int maxThreadCount,
-	ProgressSink& progressSink);
+	ProgressSink& progressSink,
+	int framerate = 0);
 
 JoiningContinuousTimeline<Shape> animateWaveFile(
 	std::filesystem::path filePath,
@@ -22,4 +23,5 @@ JoiningContinuousTimeline<Shape> animateWaveFile(
 	const Recognizer& recognizer,
 	const ShapeSet& targetShapeSet,
 	int maxThreadCount,
-	ProgressSink& progressSink);
+	ProgressSink& progressSink,
+	int framerate = 0);
