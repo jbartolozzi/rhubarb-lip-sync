@@ -49,7 +49,7 @@ void addMissingDictionaryWords(const vector<string>& words, ps_decoder_t& decode
 		}
 	}
 	for (auto it = missingPronunciations.begin(); it != missingPronunciations.end(); ++it) {
-		const bool isLast = it == --missingPronunciations.end();
+		const bool isLast = std::next(it) == missingPronunciations.end();
 		logging::infoFormat("Unknown word '{}'. Guessing pronunciation '{}'.", it->first, it->second);
 		ps_add_word(&decoder, it->first.c_str(), it->second.c_str(), isLast);
 	}
@@ -199,7 +199,10 @@ optional<Timeline<Phone>> getPhoneAlignment(
 
 		// End search
 		error = ps_search_finish(search.get());
-		if (error) return boost::none;
+		if (error) {
+			logging::warn("Forced phone alignment failed. Falling back to noise.");
+			return boost::none;
+		}
 	}
 
 	// Extract phones with timestamps

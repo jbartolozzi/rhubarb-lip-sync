@@ -236,8 +236,12 @@ BoundedTimeline<string> recognizeWords(const vector<int16_t>& audioBuffer, ps_de
 	// Collect words
 	for (ps_seg_t* it = ps_seg_iter(&decoder); it; it = ps_seg_next(it)) {
 		const char* word = ps_seg_word(it);
+		if (!word || word[0] == '\0') continue;
+
 		int firstFrame, lastFrame;
 		ps_seg_frames(it, &firstFrame, &lastFrame);
+		if (firstFrame < 0 || lastFrame < firstFrame) continue;
+
 		result.set(centiseconds(firstFrame), centiseconds(lastFrame + 1), word);
 	}
 

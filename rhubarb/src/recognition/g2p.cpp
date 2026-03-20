@@ -95,11 +95,13 @@ vector<Phone> wordToPhones(const std::string& word) {
 	for (wchar_t c : wideWord) {
 		Phone phone = charToPhone(c);
 		if (phone == Phone::Noise) {
-			logging::errorFormat(
-				"G2P error determining pronunciation for '{}': Character '{}' is not a recognized phone shorthand.",
-				word,
-				static_cast<char>(c)
+			logging::warnFormat(
+				"G2P: skipping unrecognized character '{}' (U+{:04X}) in word '{}'.",
+				static_cast<char>(c),
+				static_cast<unsigned int>(c),
+				word
 			);
+			continue; // Skip unknown characters instead of corrupting the pronunciation
 		}
 
 		if (phone != lastPhone) {

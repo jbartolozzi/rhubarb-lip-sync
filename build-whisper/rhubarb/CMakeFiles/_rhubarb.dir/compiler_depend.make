@@ -904,6 +904,7 @@ rhubarb/CMakeFiles/_rhubarb.dir/src/python/bindings.cpp.o: /Users/jhb/Documents/
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/animation/animationRules.h \
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/animation/targetShapeSet.h \
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/audio/AudioClip.h \
+  /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/audio/audioFileReading.h \
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/core/Phone.h \
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/core/Shape.h \
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/lib/rhubarbLib.h \
@@ -913,6 +914,7 @@ rhubarb/CMakeFiles/_rhubarb.dir/src/python/bindings.cpp.o: /Users/jhb/Documents/
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/WhisperPocketSphinxRecognizer.h \
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/WhisperRecognizer.h \
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/pocketSphinxTools.h \
+  /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/whisperTranscribe.h \
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/time/BoundedTimeline.h \
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/time/ContinuousTimeline.h \
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/time/TimeRange.h \
@@ -2026,6 +2028,8 @@ rhubarb/CMakeFiles/_rhubarb.dir/src/python/bindings.cpp.o: /Users/jhb/Documents/
 
 /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/time/BoundedTimeline.h:
 
+/Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/whisperTranscribe.h:
+
 /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/WhisperRecognizer.h:
 
 /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/WhisperPocketSphinxRecognizer.h:
@@ -2037,6 +2041,8 @@ rhubarb/CMakeFiles/_rhubarb.dir/src/python/bindings.cpp.o: /Users/jhb/Documents/
 /opt/homebrew/include/boost/optional/detail/optional_swap.hpp:
 
 /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/core/Phone.h:
+
+/Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/audio/audioFileReading.h:
 
 /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/audio/AudioClip.h:
 

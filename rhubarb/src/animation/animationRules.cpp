@@ -154,12 +154,14 @@ Timeline<ShapeSet> getShapeSets(
 		};
 	};
 
-	// Returns a timeline with two shape sets, timed as a plosive
-	const auto plosive = [duration, previousDuration](ShapeSet first, ShapeSet second) {
+	// Returns a timeline with two shape sets, timed as a plosive.
+	// Occlusion duration is based on the plosive's own duration (lips close
+	// before the burst), clamped to a reasonable range.
+	const auto plosive = [duration](ShapeSet first, ShapeSet second) {
 		const centiseconds minOcclusionDuration = 4_cs;
 		const centiseconds maxOcclusionDuration = 12_cs;
 		const centiseconds occlusionDuration =
-			clamp(previousDuration / 2, minOcclusionDuration, maxOcclusionDuration);
+			clamp(duration * 2 / 3, minOcclusionDuration, maxOcclusionDuration);
 		return Timeline<ShapeSet> {
 			{ -occlusionDuration, 0_cs, first },
 			{ 0_cs, duration, second }
