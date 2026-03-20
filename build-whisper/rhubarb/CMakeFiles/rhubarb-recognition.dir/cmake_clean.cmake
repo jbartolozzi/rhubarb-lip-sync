@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/rhubarb-recognition.dir/src/recognition/PhoneticRecognizer.cpp.o.d"
   "CMakeFiles/rhubarb-recognition.dir/src/recognition/PocketSphinxRecognizer.cpp.o"
   "CMakeFiles/rhubarb-recognition.dir/src/recognition/PocketSphinxRecognizer.cpp.o.d"
+  "CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.o"
+  "CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.o.d"
   "CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperRecognizer.cpp.o"
   "CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperRecognizer.cpp.o.d"
   "CMakeFiles/rhubarb-recognition.dir/src/recognition/cmuDictionary.cpp.o"
@@ -15,6 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/rhubarb-recognition.dir/src/recognition/pocketSphinxTools.cpp.o.d"
   "CMakeFiles/rhubarb-recognition.dir/src/recognition/tokenization.cpp.o"
   "CMakeFiles/rhubarb-recognition.dir/src/recognition/tokenization.cpp.o.d"
+  "CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.o"
+  "CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.o.d"
   "librhubarb-recognition.a"
   "librhubarb-recognition.pdb"
 )

@@ -27,6 +27,7 @@
 /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/rhubarb/CMakeFiles/rhubarb-tools.dir
 /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/rhubarb/CMakeFiles/rhubarb.dir
 /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/rhubarb/CMakeFiles/runTests.dir
+/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/rhubarb/CMakeFiles/_rhubarb.dir
 /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/rhubarb/CMakeFiles/package.dir
 /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/rhubarb/CMakeFiles/package_source.dir
 /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/rhubarb/CMakeFiles/edit_cache.dir
@@ -116,3 +117,11 @@
 /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/whisper-build/src/CMakeFiles/install.dir
 /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/whisper-build/src/CMakeFiles/install/local.dir
 /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/whisper-build/src/CMakeFiles/install/strip.dir
+/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/pybind11-build/CMakeFiles/package.dir
+/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/pybind11-build/CMakeFiles/package_source.dir
+/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/pybind11-build/CMakeFiles/edit_cache.dir
+/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/pybind11-build/CMakeFiles/rebuild_cache.dir
+/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/pybind11-build/CMakeFiles/list_install_components.dir
+/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/pybind11-build/CMakeFiles/install.dir
+/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/pybind11-build/CMakeFiles/install/local.dir
+/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/pybind11-build/CMakeFiles/install/strip.dir

@@ -107,7 +107,7 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\" \"python\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -455,6 +455,19 @@ runTests/fast:
 .PHONY : runTests/fast
 
 #=============================================================================
+# Target rules for targets named _rhubarb
+
+# Build rule for target.
+_rhubarb: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _rhubarb
+.PHONY : _rhubarb
+
+# fast build rule for target.
+_rhubarb/fast:
+	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/_rhubarb.dir/build.make rhubarb/CMakeFiles/_rhubarb.dir/build
+.PHONY : _rhubarb/fast
+
+#=============================================================================
 # Target rules for targets named gmock
 
 # Build rule for target.
@@ -585,6 +598,7 @@ help:
 	@echo "... package"
 	@echo "... package_source"
 	@echo "... rebuild_cache"
+	@echo "... _rhubarb"
 	@echo "... cppFormat"
 	@echo "... flite"
 	@echo "... ggml"

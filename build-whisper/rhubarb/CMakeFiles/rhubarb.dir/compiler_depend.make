@@ -3356,6 +3356,7 @@ rhubarb/CMakeFiles/rhubarb.dir/src/rhubarb/main.cpp.o: /Users/jhb/Documents/GitH
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/PhoneticRecognizer.h \
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/PocketSphinxRecognizer.h \
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/Recognizer.h \
+  /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/WhisperPocketSphinxRecognizer.h \
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/WhisperRecognizer.h \
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/pocketSphinxTools.h \
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/rhubarb/ExportFormat.h \
@@ -8903,6 +8904,8 @@ rhubarb/CMakeFiles/rhubarb.dir/src/rhubarb/sinks/QuietStderrSink.cpp.o: /Users/j
 /opt/homebrew/include/boost/range/adaptor/argument_fwd.hpp:
 
 /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/WhisperRecognizer.h:
+
+/Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/WhisperPocketSphinxRecognizer.h:
 
 /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/PhoneticRecognizer.h:
 

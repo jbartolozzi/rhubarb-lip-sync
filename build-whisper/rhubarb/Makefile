@@ -107,7 +107,7 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\" \"python\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -474,6 +474,20 @@ runTests: rhubarb/CMakeFiles/runTests.dir/rule
 runTests/fast:
 	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper && $(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/runTests.dir/build.make rhubarb/CMakeFiles/runTests.dir/build
 .PHONY : runTests/fast
+
+# Convenience name for target.
+rhubarb/CMakeFiles/_rhubarb.dir/rule:
+	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rhubarb/CMakeFiles/_rhubarb.dir/rule
+.PHONY : rhubarb/CMakeFiles/_rhubarb.dir/rule
+
+# Convenience name for target.
+_rhubarb: rhubarb/CMakeFiles/_rhubarb.dir/rule
+.PHONY : _rhubarb
+
+# fast build rule for target.
+_rhubarb/fast:
+	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper && $(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/_rhubarb.dir/build.make rhubarb/CMakeFiles/_rhubarb.dir/build
+.PHONY : _rhubarb/fast
 
 appInfo.o: appInfo.cpp.o
 .PHONY : appInfo.o
@@ -5563,6 +5577,30 @@ src/logging/sinks.cpp.s:
 	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper && $(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/rhubarb-logging.dir/build.make rhubarb/CMakeFiles/rhubarb-logging.dir/src/logging/sinks.cpp.s
 .PHONY : src/logging/sinks.cpp.s
 
+src/python/bindings.o: src/python/bindings.cpp.o
+.PHONY : src/python/bindings.o
+
+# target to build an object file
+src/python/bindings.cpp.o:
+	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper && $(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/_rhubarb.dir/build.make rhubarb/CMakeFiles/_rhubarb.dir/src/python/bindings.cpp.o
+.PHONY : src/python/bindings.cpp.o
+
+src/python/bindings.i: src/python/bindings.cpp.i
+.PHONY : src/python/bindings.i
+
+# target to preprocess a source file
+src/python/bindings.cpp.i:
+	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper && $(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/_rhubarb.dir/build.make rhubarb/CMakeFiles/_rhubarb.dir/src/python/bindings.cpp.i
+.PHONY : src/python/bindings.cpp.i
+
+src/python/bindings.s: src/python/bindings.cpp.s
+.PHONY : src/python/bindings.s
+
+# target to generate assembly for a file
+src/python/bindings.cpp.s:
+	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper && $(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/_rhubarb.dir/build.make rhubarb/CMakeFiles/_rhubarb.dir/src/python/bindings.cpp.s
+.PHONY : src/python/bindings.cpp.s
+
 src/recognition/PhoneticRecognizer.o: src/recognition/PhoneticRecognizer.cpp.o
 .PHONY : src/recognition/PhoneticRecognizer.o
 
@@ -5610,6 +5648,30 @@ src/recognition/PocketSphinxRecognizer.s: src/recognition/PocketSphinxRecognizer
 src/recognition/PocketSphinxRecognizer.cpp.s:
 	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper && $(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/rhubarb-recognition.dir/build.make rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/PocketSphinxRecognizer.cpp.s
 .PHONY : src/recognition/PocketSphinxRecognizer.cpp.s
+
+src/recognition/WhisperPocketSphinxRecognizer.o: src/recognition/WhisperPocketSphinxRecognizer.cpp.o
+.PHONY : src/recognition/WhisperPocketSphinxRecognizer.o
+
+# target to build an object file
+src/recognition/WhisperPocketSphinxRecognizer.cpp.o:
+	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper && $(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/rhubarb-recognition.dir/build.make rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.o
+.PHONY : src/recognition/WhisperPocketSphinxRecognizer.cpp.o
+
+src/recognition/WhisperPocketSphinxRecognizer.i: src/recognition/WhisperPocketSphinxRecognizer.cpp.i
+.PHONY : src/recognition/WhisperPocketSphinxRecognizer.i
+
+# target to preprocess a source file
+src/recognition/WhisperPocketSphinxRecognizer.cpp.i:
+	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper && $(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/rhubarb-recognition.dir/build.make rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.i
+.PHONY : src/recognition/WhisperPocketSphinxRecognizer.cpp.i
+
+src/recognition/WhisperPocketSphinxRecognizer.s: src/recognition/WhisperPocketSphinxRecognizer.cpp.s
+.PHONY : src/recognition/WhisperPocketSphinxRecognizer.s
+
+# target to generate assembly for a file
+src/recognition/WhisperPocketSphinxRecognizer.cpp.s:
+	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper && $(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/rhubarb-recognition.dir/build.make rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.s
+.PHONY : src/recognition/WhisperPocketSphinxRecognizer.cpp.s
 
 src/recognition/WhisperRecognizer.o: src/recognition/WhisperRecognizer.cpp.o
 .PHONY : src/recognition/WhisperRecognizer.o
@@ -5754,6 +5816,30 @@ src/recognition/tokenization.s: src/recognition/tokenization.cpp.s
 src/recognition/tokenization.cpp.s:
 	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper && $(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/rhubarb-recognition.dir/build.make rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/tokenization.cpp.s
 .PHONY : src/recognition/tokenization.cpp.s
+
+src/recognition/whisperTranscribe.o: src/recognition/whisperTranscribe.cpp.o
+.PHONY : src/recognition/whisperTranscribe.o
+
+# target to build an object file
+src/recognition/whisperTranscribe.cpp.o:
+	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper && $(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/rhubarb-recognition.dir/build.make rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.o
+.PHONY : src/recognition/whisperTranscribe.cpp.o
+
+src/recognition/whisperTranscribe.i: src/recognition/whisperTranscribe.cpp.i
+.PHONY : src/recognition/whisperTranscribe.i
+
+# target to preprocess a source file
+src/recognition/whisperTranscribe.cpp.i:
+	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper && $(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/rhubarb-recognition.dir/build.make rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.i
+.PHONY : src/recognition/whisperTranscribe.cpp.i
+
+src/recognition/whisperTranscribe.s: src/recognition/whisperTranscribe.cpp.s
+.PHONY : src/recognition/whisperTranscribe.s
+
+# target to generate assembly for a file
+src/recognition/whisperTranscribe.cpp.s:
+	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper && $(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/rhubarb-recognition.dir/build.make rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.s
+.PHONY : src/recognition/whisperTranscribe.cpp.s
 
 src/rhubarb/ExportFormat.o: src/rhubarb/ExportFormat.cpp.o
 .PHONY : src/rhubarb/ExportFormat.o
@@ -6441,6 +6527,7 @@ help:
 	@echo "... package"
 	@echo "... package_source"
 	@echo "... rebuild_cache"
+	@echo "... _rhubarb"
 	@echo "... cppFormat"
 	@echo "... flite"
 	@echo "... ogg"
@@ -7098,12 +7185,18 @@ help:
 	@echo "... src/logging/sinks.o"
 	@echo "... src/logging/sinks.i"
 	@echo "... src/logging/sinks.s"
+	@echo "... src/python/bindings.o"
+	@echo "... src/python/bindings.i"
+	@echo "... src/python/bindings.s"
 	@echo "... src/recognition/PhoneticRecognizer.o"
 	@echo "... src/recognition/PhoneticRecognizer.i"
 	@echo "... src/recognition/PhoneticRecognizer.s"
 	@echo "... src/recognition/PocketSphinxRecognizer.o"
 	@echo "... src/recognition/PocketSphinxRecognizer.i"
 	@echo "... src/recognition/PocketSphinxRecognizer.s"
+	@echo "... src/recognition/WhisperPocketSphinxRecognizer.o"
+	@echo "... src/recognition/WhisperPocketSphinxRecognizer.i"
+	@echo "... src/recognition/WhisperPocketSphinxRecognizer.s"
 	@echo "... src/recognition/WhisperRecognizer.o"
 	@echo "... src/recognition/WhisperRecognizer.i"
 	@echo "... src/recognition/WhisperRecognizer.s"
@@ -7122,6 +7215,9 @@ help:
 	@echo "... src/recognition/tokenization.o"
 	@echo "... src/recognition/tokenization.i"
 	@echo "... src/recognition/tokenization.s"
+	@echo "... src/recognition/whisperTranscribe.o"
+	@echo "... src/recognition/whisperTranscribe.i"
+	@echo "... src/recognition/whisperTranscribe.s"
 	@echo "... src/rhubarb/ExportFormat.o"
 	@echo "... src/rhubarb/ExportFormat.i"
 	@echo "... src/rhubarb/ExportFormat.s"

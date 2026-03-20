@@ -32,6 +32,7 @@
 #include "recognition/PhoneticRecognizer.h"
 #if RHUBARB_HAS_WHISPER
 #include "recognition/WhisperRecognizer.h"
+#include "recognition/WhisperPocketSphinxRecognizer.h"
 #endif
 
 using std::exception;
@@ -88,6 +89,11 @@ unique_ptr<Recognizer> createRecognizer(
 #if RHUBARB_HAS_WHISPER
 		case RecognizerType::Whisper:
 			return make_unique<WhisperRecognizer>(
+				whisperModelPath.empty()
+					? std::filesystem::path()
+					: std::filesystem::u8path(whisperModelPath));
+		case RecognizerType::WhisperPocketSphinx:
+			return make_unique<WhisperPocketSphinxRecognizer>(
 				whisperModelPath.empty()
 					? std::filesystem::path()
 					: std::filesystem::u8path(whisperModelPath));

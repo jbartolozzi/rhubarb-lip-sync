@@ -145,6 +145,25 @@ _deps/googletest-build/googletest/clean: _deps/googletest-build/googletest/CMake
 .PHONY : _deps/googletest-build/googletest/clean
 
 #=============================================================================
+# Directory level rules for directory _deps/pybind11-build
+
+# Recursive "all" directory target.
+_deps/pybind11-build/all:
+.PHONY : _deps/pybind11-build/all
+
+# Recursive "codegen" directory target.
+_deps/pybind11-build/codegen:
+.PHONY : _deps/pybind11-build/codegen
+
+# Recursive "preinstall" directory target.
+_deps/pybind11-build/preinstall:
+.PHONY : _deps/pybind11-build/preinstall
+
+# Recursive "clean" directory target.
+_deps/pybind11-build/clean:
+.PHONY : _deps/pybind11-build/clean
+
+#=============================================================================
 # Directory level rules for directory _deps/whisper-build
 
 # Recursive "all" directory target.
@@ -300,8 +319,10 @@ rhubarb/all: rhubarb/CMakeFiles/rhubarb-time.dir/all
 rhubarb/all: rhubarb/CMakeFiles/rhubarb-tools.dir/all
 rhubarb/all: rhubarb/CMakeFiles/rhubarb.dir/all
 rhubarb/all: rhubarb/CMakeFiles/runTests.dir/all
+rhubarb/all: rhubarb/CMakeFiles/_rhubarb.dir/all
 rhubarb/all: _deps/googletest-build/all
 rhubarb/all: _deps/whisper-build/all
+rhubarb/all: _deps/pybind11-build/all
 .PHONY : rhubarb/all
 
 # Recursive "codegen" directory target.
@@ -326,13 +347,16 @@ rhubarb/codegen: rhubarb/CMakeFiles/rhubarb-time.dir/codegen
 rhubarb/codegen: rhubarb/CMakeFiles/rhubarb-tools.dir/codegen
 rhubarb/codegen: rhubarb/CMakeFiles/rhubarb.dir/codegen
 rhubarb/codegen: rhubarb/CMakeFiles/runTests.dir/codegen
+rhubarb/codegen: rhubarb/CMakeFiles/_rhubarb.dir/codegen
 rhubarb/codegen: _deps/googletest-build/codegen
 rhubarb/codegen: _deps/whisper-build/codegen
+rhubarb/codegen: _deps/pybind11-build/codegen
 .PHONY : rhubarb/codegen
 
 # Recursive "preinstall" directory target.
 rhubarb/preinstall: _deps/googletest-build/preinstall
 rhubarb/preinstall: _deps/whisper-build/preinstall
+rhubarb/preinstall: _deps/pybind11-build/preinstall
 .PHONY : rhubarb/preinstall
 
 # Recursive "clean" directory target.
@@ -357,8 +381,10 @@ rhubarb/clean: rhubarb/CMakeFiles/rhubarb-time.dir/clean
 rhubarb/clean: rhubarb/CMakeFiles/rhubarb-tools.dir/clean
 rhubarb/clean: rhubarb/CMakeFiles/rhubarb.dir/clean
 rhubarb/clean: rhubarb/CMakeFiles/runTests.dir/clean
+rhubarb/clean: rhubarb/CMakeFiles/_rhubarb.dir/clean
 rhubarb/clean: _deps/googletest-build/clean
 rhubarb/clean: _deps/whisper-build/clean
+rhubarb/clean: _deps/pybind11-build/clean
 .PHONY : rhubarb/clean
 
 #=============================================================================
@@ -400,12 +426,12 @@ rhubarb/CMakeFiles/cppFormat.dir/clean:
 rhubarb/CMakeFiles/sphinxbase.dir/all:
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/sphinxbase.dir/build.make rhubarb/CMakeFiles/sphinxbase.dir/depend
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/sphinxbase.dir/build.make rhubarb/CMakeFiles/sphinxbase.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84 "Built target sphinxbase"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84 "Built target sphinxbase"
 .PHONY : rhubarb/CMakeFiles/sphinxbase.dir/all
 
 # Build rule for subdir invocation for target.
 rhubarb/CMakeFiles/sphinxbase.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rhubarb/CMakeFiles/sphinxbase.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : rhubarb/CMakeFiles/sphinxbase.dir/rule
@@ -417,7 +443,7 @@ sphinxbase: rhubarb/CMakeFiles/sphinxbase.dir/rule
 # codegen rule for target.
 rhubarb/CMakeFiles/sphinxbase.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/sphinxbase.dir/build.make rhubarb/CMakeFiles/sphinxbase.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84 "Finished codegen for target sphinxbase"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84 "Finished codegen for target sphinxbase"
 .PHONY : rhubarb/CMakeFiles/sphinxbase.dir/codegen
 
 # clean rule for target.
@@ -437,7 +463,7 @@ rhubarb/CMakeFiles/pocketSphinx.dir/all: rhubarb/CMakeFiles/sphinxbase.dir/all
 
 # Build rule for subdir invocation for target.
 rhubarb/CMakeFiles/pocketSphinx.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 28
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 27
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rhubarb/CMakeFiles/pocketSphinx.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : rhubarb/CMakeFiles/pocketSphinx.dir/rule
@@ -560,12 +586,12 @@ rhubarb/CMakeFiles/flite.dir/clean:
 rhubarb/CMakeFiles/utfcpp.dir/all:
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/utfcpp.dir/build.make rhubarb/CMakeFiles/utfcpp.dir/depend
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/utfcpp.dir/build.make rhubarb/CMakeFiles/utfcpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num= "Built target utfcpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=86 "Built target utfcpp"
 .PHONY : rhubarb/CMakeFiles/utfcpp.dir/all
 
 # Build rule for subdir invocation for target.
 rhubarb/CMakeFiles/utfcpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rhubarb/CMakeFiles/utfcpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : rhubarb/CMakeFiles/utfcpp.dir/rule
@@ -577,7 +603,7 @@ utfcpp: rhubarb/CMakeFiles/utfcpp.dir/rule
 # codegen rule for target.
 rhubarb/CMakeFiles/utfcpp.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/utfcpp.dir/build.make rhubarb/CMakeFiles/utfcpp.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num= "Finished codegen for target utfcpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=86 "Finished codegen for target utfcpp"
 .PHONY : rhubarb/CMakeFiles/utfcpp.dir/codegen
 
 # clean rule for target.
@@ -656,12 +682,12 @@ rhubarb/CMakeFiles/ogg.dir/clean:
 rhubarb/CMakeFiles/vorbis.dir/all: rhubarb/CMakeFiles/ogg.dir/all
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/vorbis.dir/build.make rhubarb/CMakeFiles/vorbis.dir/depend
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/vorbis.dir/build.make rhubarb/CMakeFiles/vorbis.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=86,87,88,89,90,91,92 "Built target vorbis"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=87,88,89,90,91,92 "Built target vorbis"
 .PHONY : rhubarb/CMakeFiles/vorbis.dir/all
 
 # Build rule for subdir invocation for target.
 rhubarb/CMakeFiles/vorbis.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rhubarb/CMakeFiles/vorbis.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : rhubarb/CMakeFiles/vorbis.dir/rule
@@ -673,7 +699,7 @@ vorbis: rhubarb/CMakeFiles/vorbis.dir/rule
 # codegen rule for target.
 rhubarb/CMakeFiles/vorbis.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/vorbis.dir/build.make rhubarb/CMakeFiles/vorbis.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=86,87,88,89,90,91,92 "Finished codegen for target vorbis"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=87,88,89,90,91,92 "Finished codegen for target vorbis"
 .PHONY : rhubarb/CMakeFiles/vorbis.dir/codegen
 
 # clean rule for target.
@@ -700,7 +726,7 @@ rhubarb/CMakeFiles/rhubarb-animation.dir/all: rhubarb/CMakeFiles/rhubarb-tools.d
 
 # Build rule for subdir invocation for target.
 rhubarb/CMakeFiles/rhubarb-animation.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 15
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rhubarb/CMakeFiles/rhubarb-animation.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : rhubarb/CMakeFiles/rhubarb-animation.dir/rule
@@ -777,7 +803,7 @@ rhubarb/CMakeFiles/rhubarb-core.dir/all: rhubarb/CMakeFiles/rhubarb-tools.dir/al
 
 # Build rule for subdir invocation for target.
 rhubarb/CMakeFiles/rhubarb-core.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 9
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rhubarb/CMakeFiles/rhubarb-core.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : rhubarb/CMakeFiles/rhubarb-core.dir/rule
@@ -817,7 +843,7 @@ rhubarb/CMakeFiles/rhubarb-exporters.dir/all: rhubarb/CMakeFiles/rhubarb-tools.d
 
 # Build rule for subdir invocation for target.
 rhubarb/CMakeFiles/rhubarb-exporters.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rhubarb/CMakeFiles/rhubarb-exporters.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : rhubarb/CMakeFiles/rhubarb-exporters.dir/rule
@@ -870,7 +896,7 @@ rhubarb/CMakeFiles/rhubarb-lib.dir/all: _deps/whisper-build/src/CMakeFiles/whisp
 
 # Build rule for subdir invocation for target.
 rhubarb/CMakeFiles/rhubarb-lib.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 89
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 90
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rhubarb/CMakeFiles/rhubarb-lib.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : rhubarb/CMakeFiles/rhubarb-lib.dir/rule
@@ -906,7 +932,7 @@ rhubarb/CMakeFiles/rhubarb-logging.dir/all: rhubarb/CMakeFiles/rhubarb-tools.dir
 
 # Build rule for subdir invocation for target.
 rhubarb/CMakeFiles/rhubarb-logging.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rhubarb/CMakeFiles/rhubarb-logging.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : rhubarb/CMakeFiles/rhubarb-logging.dir/rule
@@ -952,12 +978,12 @@ rhubarb/CMakeFiles/rhubarb-recognition.dir/all: _deps/whisper-build/ggml/src/ggm
 rhubarb/CMakeFiles/rhubarb-recognition.dir/all: _deps/whisper-build/src/CMakeFiles/whisper.dir/all
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/rhubarb-recognition.dir/build.make rhubarb/CMakeFiles/rhubarb-recognition.dir/depend
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/rhubarb-recognition.dir/build.make rhubarb/CMakeFiles/rhubarb-recognition.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=56,57,58 "Built target rhubarb-recognition"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=56,57,58,59 "Built target rhubarb-recognition"
 .PHONY : rhubarb/CMakeFiles/rhubarb-recognition.dir/all
 
 # Build rule for subdir invocation for target.
 rhubarb/CMakeFiles/rhubarb-recognition.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 86
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 87
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rhubarb/CMakeFiles/rhubarb-recognition.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : rhubarb/CMakeFiles/rhubarb-recognition.dir/rule
@@ -969,7 +995,7 @@ rhubarb-recognition: rhubarb/CMakeFiles/rhubarb-recognition.dir/rule
 # codegen rule for target.
 rhubarb/CMakeFiles/rhubarb-recognition.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/rhubarb-recognition.dir/build.make rhubarb/CMakeFiles/rhubarb-recognition.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=56,57,58 "Finished codegen for target rhubarb-recognition"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=56,57,58,59 "Finished codegen for target rhubarb-recognition"
 .PHONY : rhubarb/CMakeFiles/rhubarb-recognition.dir/codegen
 
 # clean rule for target.
@@ -989,12 +1015,12 @@ rhubarb/CMakeFiles/rhubarb-time.dir/all: rhubarb/CMakeFiles/rhubarb-logging.dir/
 rhubarb/CMakeFiles/rhubarb-time.dir/all: rhubarb/CMakeFiles/rhubarb-tools.dir/all
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/rhubarb-time.dir/build.make rhubarb/CMakeFiles/rhubarb-time.dir/depend
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/rhubarb-time.dir/build.make rhubarb/CMakeFiles/rhubarb-time.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=59 "Built target rhubarb-time"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=60 "Built target rhubarb-time"
 .PHONY : rhubarb/CMakeFiles/rhubarb-time.dir/all
 
 # Build rule for subdir invocation for target.
 rhubarb/CMakeFiles/rhubarb-time.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rhubarb/CMakeFiles/rhubarb-time.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : rhubarb/CMakeFiles/rhubarb-time.dir/rule
@@ -1006,7 +1032,7 @@ rhubarb-time: rhubarb/CMakeFiles/rhubarb-time.dir/rule
 # codegen rule for target.
 rhubarb/CMakeFiles/rhubarb-time.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/rhubarb-time.dir/build.make rhubarb/CMakeFiles/rhubarb-time.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=59 "Finished codegen for target rhubarb-time"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=60 "Finished codegen for target rhubarb-time"
 .PHONY : rhubarb/CMakeFiles/rhubarb-time.dir/codegen
 
 # clean rule for target.
@@ -1024,12 +1050,12 @@ rhubarb/CMakeFiles/rhubarb-tools.dir/all: rhubarb/CMakeFiles/utfcpp.dir/all
 rhubarb/CMakeFiles/rhubarb-tools.dir/all: rhubarb/CMakeFiles/utf8proc.dir/all
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/rhubarb-tools.dir/build.make rhubarb/CMakeFiles/rhubarb-tools.dir/depend
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/rhubarb-tools.dir/build.make rhubarb/CMakeFiles/rhubarb-tools.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=60,61,62,63 "Built target rhubarb-tools"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=61,62,63,64 "Built target rhubarb-tools"
 .PHONY : rhubarb/CMakeFiles/rhubarb-tools.dir/all
 
 # Build rule for subdir invocation for target.
 rhubarb/CMakeFiles/rhubarb-tools.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rhubarb/CMakeFiles/rhubarb-tools.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : rhubarb/CMakeFiles/rhubarb-tools.dir/rule
@@ -1041,7 +1067,7 @@ rhubarb-tools: rhubarb/CMakeFiles/rhubarb-tools.dir/rule
 # codegen rule for target.
 rhubarb/CMakeFiles/rhubarb-tools.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/rhubarb-tools.dir/build.make rhubarb/CMakeFiles/rhubarb-tools.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=60,61,62,63 "Finished codegen for target rhubarb-tools"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=61,62,63,64 "Finished codegen for target rhubarb-tools"
 .PHONY : rhubarb/CMakeFiles/rhubarb-tools.dir/codegen
 
 # clean rule for target.
@@ -1084,7 +1110,7 @@ rhubarb/CMakeFiles/rhubarb.dir/all: _deps/whisper-build/src/CMakeFiles/whisper.d
 
 # Build rule for subdir invocation for target.
 rhubarb/CMakeFiles/rhubarb.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 94
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 95
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rhubarb/CMakeFiles/rhubarb.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : rhubarb/CMakeFiles/rhubarb.dir/rule
@@ -1134,12 +1160,12 @@ rhubarb/CMakeFiles/runTests.dir/all: _deps/whisper-build/ggml/src/ggml-blas/CMak
 rhubarb/CMakeFiles/runTests.dir/all: _deps/whisper-build/src/CMakeFiles/whisper.dir/all
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/runTests.dir/build.make rhubarb/CMakeFiles/runTests.dir/depend
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/runTests.dir/build.make rhubarb/CMakeFiles/runTests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=64,65,66 "Built target runTests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=65,66,67 "Built target runTests"
 .PHONY : rhubarb/CMakeFiles/runTests.dir/all
 
 # Build rule for subdir invocation for target.
 rhubarb/CMakeFiles/runTests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 91
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 92
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rhubarb/CMakeFiles/runTests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : rhubarb/CMakeFiles/runTests.dir/rule
@@ -1151,7 +1177,7 @@ runTests: rhubarb/CMakeFiles/runTests.dir/rule
 # codegen rule for target.
 rhubarb/CMakeFiles/runTests.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/runTests.dir/build.make rhubarb/CMakeFiles/runTests.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=64,65,66 "Finished codegen for target runTests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=65,66,67 "Finished codegen for target runTests"
 .PHONY : rhubarb/CMakeFiles/runTests.dir/codegen
 
 # clean rule for target.
@@ -1160,13 +1186,68 @@ rhubarb/CMakeFiles/runTests.dir/clean:
 .PHONY : rhubarb/CMakeFiles/runTests.dir/clean
 
 #=============================================================================
+# Target rules for target rhubarb/CMakeFiles/_rhubarb.dir
+
+# All Build rule for target.
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/cppFormat.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/sphinxbase.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/pocketSphinx.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/webRtc.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/whereami.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/flite.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/utfcpp.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/utf8proc.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/ogg.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/vorbis.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/rhubarb-animation.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/rhubarb-audio.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/rhubarb-core.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/rhubarb-exporters.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/rhubarb-lib.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/rhubarb-logging.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/rhubarb-recognition.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/rhubarb-time.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: rhubarb/CMakeFiles/rhubarb-tools.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: _deps/whisper-build/ggml/src/CMakeFiles/ggml-base.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: _deps/whisper-build/ggml/src/CMakeFiles/ggml.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: _deps/whisper-build/ggml/src/CMakeFiles/ggml-cpu.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: _deps/whisper-build/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/all
+rhubarb/CMakeFiles/_rhubarb.dir/all: _deps/whisper-build/src/CMakeFiles/whisper.dir/all
+	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/_rhubarb.dir/build.make rhubarb/CMakeFiles/_rhubarb.dir/depend
+	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/_rhubarb.dir/build.make rhubarb/CMakeFiles/_rhubarb.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num= "Built target _rhubarb"
+.PHONY : rhubarb/CMakeFiles/_rhubarb.dir/all
+
+# Build rule for subdir invocation for target.
+rhubarb/CMakeFiles/_rhubarb.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 92
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rhubarb/CMakeFiles/_rhubarb.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
+.PHONY : rhubarb/CMakeFiles/_rhubarb.dir/rule
+
+# Convenience name for target.
+_rhubarb: rhubarb/CMakeFiles/_rhubarb.dir/rule
+.PHONY : _rhubarb
+
+# codegen rule for target.
+rhubarb/CMakeFiles/_rhubarb.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/_rhubarb.dir/build.make rhubarb/CMakeFiles/_rhubarb.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num= "Finished codegen for target _rhubarb"
+.PHONY : rhubarb/CMakeFiles/_rhubarb.dir/codegen
+
+# clean rule for target.
+rhubarb/CMakeFiles/_rhubarb.dir/clean:
+	$(MAKE) $(MAKESILENT) -f rhubarb/CMakeFiles/_rhubarb.dir/build.make rhubarb/CMakeFiles/_rhubarb.dir/clean
+.PHONY : rhubarb/CMakeFiles/_rhubarb.dir/clean
+
+#=============================================================================
 # Target rules for target _deps/googletest-build/googlemock/CMakeFiles/gmock.dir
 
 # All Build rule for target.
 _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=27 "Built target gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num= "Built target gmock"
 .PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1183,7 +1264,7 @@ gmock: _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/rule
 # codegen rule for target.
 _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=27 "Finished codegen for target gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num= "Finished codegen for target gmock"
 .PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/codegen
 
 # clean rule for target.
@@ -1231,12 +1312,12 @@ _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/clean:
 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num= "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=29 "Built target gtest"
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest.dir/rule
@@ -1248,7 +1329,7 @@ gtest: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/rule
 # codegen rule for target.
 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num= "Finished codegen for target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=29 "Finished codegen for target gtest"
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest.dir/codegen
 
 # clean rule for target.
@@ -1263,7 +1344,7 @@ _deps/googletest-build/googletest/CMakeFiles/gtest.dir/clean:
 _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=29 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num= "Built target gtest_main"
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1280,7 +1361,7 @@ gtest_main: _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/rule
 # codegen rule for target.
 _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=29 "Finished codegen for target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num= "Finished codegen for target gtest_main"
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/codegen
 
 # clean rule for target.
@@ -1295,12 +1376,12 @@ _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/clean:
 _deps/whisper-build/ggml/src/CMakeFiles/ggml-base.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps/whisper-build/ggml/src/CMakeFiles/ggml-base.dir/build.make _deps/whisper-build/ggml/src/CMakeFiles/ggml-base.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/whisper-build/ggml/src/CMakeFiles/ggml-base.dir/build.make _deps/whisper-build/ggml/src/CMakeFiles/ggml-base.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=21,22,23 "Built target ggml-base"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=22,23 "Built target ggml-base"
 .PHONY : _deps/whisper-build/ggml/src/CMakeFiles/ggml-base.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/whisper-build/ggml/src/CMakeFiles/ggml-base.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/whisper-build/ggml/src/CMakeFiles/ggml-base.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : _deps/whisper-build/ggml/src/CMakeFiles/ggml-base.dir/rule
@@ -1312,7 +1393,7 @@ ggml-base: _deps/whisper-build/ggml/src/CMakeFiles/ggml-base.dir/rule
 # codegen rule for target.
 _deps/whisper-build/ggml/src/CMakeFiles/ggml-base.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps/whisper-build/ggml/src/CMakeFiles/ggml-base.dir/build.make _deps/whisper-build/ggml/src/CMakeFiles/ggml-base.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=21,22,23 "Finished codegen for target ggml-base"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=22,23 "Finished codegen for target ggml-base"
 .PHONY : _deps/whisper-build/ggml/src/CMakeFiles/ggml-base.dir/codegen
 
 # clean rule for target.
@@ -1329,12 +1410,12 @@ _deps/whisper-build/ggml/src/CMakeFiles/ggml.dir/all: _deps/whisper-build/ggml/s
 _deps/whisper-build/ggml/src/CMakeFiles/ggml.dir/all: _deps/whisper-build/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/whisper-build/ggml/src/CMakeFiles/ggml.dir/build.make _deps/whisper-build/ggml/src/CMakeFiles/ggml.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/whisper-build/ggml/src/CMakeFiles/ggml.dir/build.make _deps/whisper-build/ggml/src/CMakeFiles/ggml.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num= "Built target ggml"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=21 "Built target ggml"
 .PHONY : _deps/whisper-build/ggml/src/CMakeFiles/ggml.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/whisper-build/ggml/src/CMakeFiles/ggml.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/whisper-build/ggml/src/CMakeFiles/ggml.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : _deps/whisper-build/ggml/src/CMakeFiles/ggml.dir/rule
@@ -1346,7 +1427,7 @@ ggml: _deps/whisper-build/ggml/src/CMakeFiles/ggml.dir/rule
 # codegen rule for target.
 _deps/whisper-build/ggml/src/CMakeFiles/ggml.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps/whisper-build/ggml/src/CMakeFiles/ggml.dir/build.make _deps/whisper-build/ggml/src/CMakeFiles/ggml.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num= "Finished codegen for target ggml"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=21 "Finished codegen for target ggml"
 .PHONY : _deps/whisper-build/ggml/src/CMakeFiles/ggml.dir/codegen
 
 # clean rule for target.
@@ -1361,12 +1442,12 @@ _deps/whisper-build/ggml/src/CMakeFiles/ggml.dir/clean:
 _deps/whisper-build/ggml/src/CMakeFiles/ggml-cpu.dir/all: _deps/whisper-build/ggml/src/CMakeFiles/ggml-base.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/whisper-build/ggml/src/CMakeFiles/ggml-cpu.dir/build.make _deps/whisper-build/ggml/src/CMakeFiles/ggml-cpu.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/whisper-build/ggml/src/CMakeFiles/ggml-cpu.dir/build.make _deps/whisper-build/ggml/src/CMakeFiles/ggml-cpu.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=24,25,26 "Built target ggml-cpu"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=25,26,27 "Built target ggml-cpu"
 .PHONY : _deps/whisper-build/ggml/src/CMakeFiles/ggml-cpu.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/whisper-build/ggml/src/CMakeFiles/ggml-cpu.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/whisper-build/ggml/src/CMakeFiles/ggml-cpu.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : _deps/whisper-build/ggml/src/CMakeFiles/ggml-cpu.dir/rule
@@ -1378,7 +1459,7 @@ ggml-cpu: _deps/whisper-build/ggml/src/CMakeFiles/ggml-cpu.dir/rule
 # codegen rule for target.
 _deps/whisper-build/ggml/src/CMakeFiles/ggml-cpu.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps/whisper-build/ggml/src/CMakeFiles/ggml-cpu.dir/build.make _deps/whisper-build/ggml/src/CMakeFiles/ggml-cpu.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=24,25,26 "Finished codegen for target ggml-cpu"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=25,26,27 "Finished codegen for target ggml-cpu"
 .PHONY : _deps/whisper-build/ggml/src/CMakeFiles/ggml-cpu.dir/codegen
 
 # clean rule for target.
@@ -1393,7 +1474,7 @@ _deps/whisper-build/ggml/src/CMakeFiles/ggml-cpu.dir/clean:
 _deps/whisper-build/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/all: _deps/whisper-build/ggml/src/CMakeFiles/ggml-base.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/whisper-build/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/build.make _deps/whisper-build/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/whisper-build/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/build.make _deps/whisper-build/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num= "Built target ggml-blas"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=24 "Built target ggml-blas"
 .PHONY : _deps/whisper-build/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1410,7 +1491,7 @@ ggml-blas: _deps/whisper-build/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/rule
 # codegen rule for target.
 _deps/whisper-build/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps/whisper-build/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/build.make _deps/whisper-build/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num= "Finished codegen for target ggml-blas"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=24 "Finished codegen for target ggml-blas"
 .PHONY : _deps/whisper-build/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/codegen
 
 # clean rule for target.
@@ -1433,7 +1514,7 @@ _deps/whisper-build/src/CMakeFiles/whisper.dir/all: _deps/whisper-build/ggml/src
 
 # Build rule for subdir invocation for target.
 _deps/whisper-build/src/CMakeFiles/whisper.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/whisper-build/src/CMakeFiles/whisper.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles 0
 .PHONY : _deps/whisper-build/src/CMakeFiles/whisper.dir/rule

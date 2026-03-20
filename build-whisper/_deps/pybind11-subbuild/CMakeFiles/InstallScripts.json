@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/pybind11-subbuild/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

@@ -17,6 +17,7 @@ EnumConverter<RecognizerType>::member_data RecognizerTypeConverter::getMemberDat
 		{ RecognizerType::Phonetic,		"phonetic" },
 #if RHUBARB_HAS_WHISPER
 		{ RecognizerType::Whisper,		"whisper" },
+		{ RecognizerType::WhisperPocketSphinx,	"whisperPocketSphinx" },
 #endif
 	};
 }

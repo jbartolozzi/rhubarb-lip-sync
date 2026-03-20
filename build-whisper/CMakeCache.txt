@@ -332,6 +332,10 @@ FETCHCONTENT_QUIET:BOOL=ON
 FETCHCONTENT_SOURCE_DIR_GOOGLETEST:PATH=
 
 //When not empty, overrides where to find pre-populated content
+// for pybind11
+FETCHCONTENT_SOURCE_DIR_PYBIND11:PATH=
+
+//When not empty, overrides where to find pre-populated content
 // for whisper
 FETCHCONTENT_SOURCE_DIR_WHISPER:PATH=
 
@@ -340,6 +344,9 @@ FETCHCONTENT_UPDATES_DISCONNECTED:BOOL=OFF
 
 //Enables UPDATE_DISCONNECTED behavior just for population of googletest
 FETCHCONTENT_UPDATES_DISCONNECTED_GOOGLETEST:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of pybind11
+FETCHCONTENT_UPDATES_DISCONNECTED_PYBIND11:BOOL=OFF
 
 //Enables UPDATE_DISCONNECTED behavior just for population of whisper
 FETCHCONTENT_UPDATES_DISCONNECTED_WHISPER:BOOL=OFF
@@ -570,8 +577,50 @@ GTEST_HAS_ABSL:BOOL=OFF
 //Path to a library.
 MATH_LIBRARY:FILEPATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libm.tbd
 
+//To enforce that a handle_type_name<> specialization exists
+PYBIND11_DISABLE_HANDLE_TYPE_NAME_DEFAULT_IMPLEMENTATION:BOOL=OFF
+
+//Force new FindPython
+PYBIND11_FINDPYTHON:BOOL=OFF
+
+//Install pybind11 header files?
+PYBIND11_INSTALL:BOOL=OFF
+
+//Override the ABI version, may be used to enable the unstable
+// ABI.
+PYBIND11_INTERNALS_VERSION:STRING=
+
+//Disable search for Python
+PYBIND11_NOPYTHON:BOOL=OFF
+
+//Disable NumPy 2 support to avoid changes to previous pybind11
+// versions.
+PYBIND11_NUMPY_1_ONLY:BOOL=OFF
+
+//Overwrite cached values read from Python library (classic search).
+// Turn off if cross-compiling and manually setting these values.
+PYBIND11_PYTHONLIBS_OVERWRITE:BOOL=ON
+
+//Python version to use for compiling modules
+PYBIND11_PYTHON_VERSION:STRING=
+
+//Use simpler GIL management logic that does not support disassociation
+PYBIND11_SIMPLE_GIL_MANAGEMENT:BOOL=OFF
+
+//Build pybind11 test suite?
+PYBIND11_TEST:BOOL=OFF
+
+//Respect CMAKE_CROSSCOMPILING
+PYBIND11_USE_CROSSCOMPILING:BOOL=OFF
+
+//Path to a program.
+PYTHON_EXECUTABLE:FILEPATH=/opt/anaconda3/envs/flux-env/bin/python
+
+//Path to a library.
+PYTHON_LIBRARY:FILEPATH=/opt/anaconda3/envs/flux-env/lib/libpython3.12.dylib
+
 //Build Python bindings
-RHUBARB_BUILD_PYTHON:BOOL=OFF
+RHUBARB_BUILD_PYTHON:BOOL=ON
 
 //Build with Whisper speech recognition
 RHUBARB_BUILD_WHISPER:BOOL=ON
@@ -696,6 +745,15 @@ gtest_force_shared_crt:BOOL=ON
 
 //Build gtest with internal symbols hidden in shared libraries.
 gtest_hide_internal_symbols:BOOL=OFF
+
+//Value Computed by CMake
+pybind11_BINARY_DIR:STATIC=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/pybind11-build
+
+//Value Computed by CMake
+pybind11_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+pybind11_SOURCE_DIR:STATIC=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/pybind11-src
 
 //Value Computed by CMake
 whisper.cpp_BINARY_DIR:STATIC=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/whisper-build
@@ -852,7 +910,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=11
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=12
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -915,6 +973,10 @@ FIND_PACKAGE_MESSAGE_DETAILS_BLAS:INTERNAL=[/Applications/Xcode.app/Contents/Dev
 FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/opt/homebrew/lib/cmake/Boost-1.90.0/BoostConfig.cmake][ ][v1.90.0(1.54)]
 //Details about finding Git
 FIND_PACKAGE_MESSAGE_DETAILS_Git:INTERNAL=[/usr/bin/git][v2.50.1 (Apple Git-155)()]
+//Details about finding PYTHON
+FIND_PACKAGE_MESSAGE_DETAILS_PYTHON:INTERNAL=/opt/anaconda3/envs/flux-env/bin/python3.12.11
+//Details about finding PythonInterp
+FIND_PACKAGE_MESSAGE_DETAILS_PythonInterp:INTERNAL=[/opt/anaconda3/envs/flux-env/bin/python][v3.12.11(3.7)]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Test GGML_COMPILER_SUPPORTS_FP16_FORMAT_I3E
@@ -939,8 +1001,27 @@ GGML_MACHINE_SUPPORTS_sve_COMPILED:INTERNAL=TRUE
 GGML_MACHINE_SUPPORTS_sve_EXITCODE:INTERNAL=FAILED_TO_RUN
 //ADVANCED property for variable: GIT_EXECUTABLE
 GIT_EXECUTABLE-ADVANCED:INTERNAL=1
+//Test HAS_FLTO_THIN
+HAS_FLTO_THIN:INTERNAL=1
+PYBIND11_INCLUDE_DIR:INTERNAL=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/pybind11-src/include
+//ADVANCED property for variable: PYTHON_EXECUTABLE
+PYTHON_EXECUTABLE-ADVANCED:INTERNAL=1
+PYTHON_INCLUDE_DIRS:INTERNAL=/opt/anaconda3/envs/flux-env/include/python3.12
+PYTHON_IS_DEBUG:INTERNAL=0
+PYTHON_LIBRARIES:INTERNAL=/opt/anaconda3/envs/flux-env/lib/libpython3.12.dylib
+//ADVANCED property for variable: PYTHON_LIBRARY
+PYTHON_LIBRARY-ADVANCED:INTERNAL=1
+PYTHON_MODULE_DEBUG_POSTFIX:INTERNAL=
+PYTHON_MODULE_EXTENSION:INTERNAL=.cpython-312-darwin.so
+PYTHON_MODULE_PREFIX:INTERNAL=
+PYTHON_VERSION:INTERNAL=3.12.11
+PYTHON_VERSION_MAJOR:INTERNAL=3
+PYTHON_VERSION_MINOR:INTERNAL=12
+Python_ADDITIONAL_VERSIONS:INTERNAL=3.12;3.11;3.10;3.9;3.8;3.7
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/usr/local
+_PYBIND11_CROSSCOMPILING:INTERNAL=OFF
+_Python:INTERNAL=PYTHON
 //ADVANCED property for variable: boost_headers_DIR
 boost_headers_DIR-ADVANCED:INTERNAL=1
 cmake_package_name:INTERNAL=GTest
@@ -956,4 +1037,10 @@ gtest_disable_pthreads-ADVANCED:INTERNAL=1
 gtest_force_shared_crt-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: gtest_hide_internal_symbols
 gtest_hide_internal_symbols-ADVANCED:INTERNAL=1
+//True if pybind11 and all required components found on the system
+pybind11_FOUND:INTERNAL=TRUE
+//Directory where pybind11 headers are located
+pybind11_INCLUDE_DIR:INTERNAL=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/pybind11-src/include
+//Directories where pybind11 and possibly Python headers are located
+pybind11_INCLUDE_DIRS:INTERNAL=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/pybind11-src/include;/opt/anaconda3/envs/flux-env/include/python3.12
 

@@ -1386,4 +1386,5 @@ rhubarb/CMakeFiles/rhubarb.dir/src/rhubarb/main.cpp.o: \
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/lib/sphinxbase-rev13216/include/sphinxbase/hash_table.h \
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/lib/sphinxbase-rev13216/include/sphinxbase/listelem_alloc.h \
   /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/PhoneticRecognizer.h \
-  /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/WhisperRecognizer.h
+  /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/WhisperRecognizer.h \
+  /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/WhisperPocketSphinxRecognizer.h

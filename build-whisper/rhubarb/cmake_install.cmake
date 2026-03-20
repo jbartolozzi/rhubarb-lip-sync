@@ -47,6 +47,29 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/whisper-build/cmake_install.cmake")
 endif()
 
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/_deps/pybind11-build/cmake_install.cmake")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "python" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/rhubarb" TYPE MODULE FILES "/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/rhubarb/_rhubarb.cpython-312-darwin.so")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/rhubarb/_rhubarb.cpython-312-darwin.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/rhubarb/_rhubarb.cpython-312-darwin.so")
+    if(CMAKE_INSTALL_DO_STRIP)
+      execute_process(COMMAND "/usr/bin/strip" -x "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/rhubarb/_rhubarb.cpython-312-darwin.so")
+    endif()
+  endif()
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "python" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/rhubarb/res/sphinx" TYPE DIRECTORY FILES "/Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/lib/pocketsphinx-rev13216/model/en-us/")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "python" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/rhubarb/res/sphinx/acoustic-model" TYPE DIRECTORY FILES "/Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/lib/cmusphinx-en-us-5.2/")
+endif()
+
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/res/sphinx" TYPE FILE FILES "/Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/lib/pocketsphinx-rev13216/model/en-us/cmudict-en-us.dict")
 endif()

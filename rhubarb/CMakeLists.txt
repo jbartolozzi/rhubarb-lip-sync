@@ -468,6 +468,10 @@ if(RHUBARB_BUILD_WHISPER)
 	target_sources(rhubarb-recognition PRIVATE
 		src/recognition/WhisperRecognizer.cpp
 		src/recognition/WhisperRecognizer.h
+		src/recognition/WhisperPocketSphinxRecognizer.cpp
+		src/recognition/WhisperPocketSphinxRecognizer.h
+		src/recognition/whisperTranscribe.cpp
+		src/recognition/whisperTranscribe.h
 	)
 	target_link_libraries(rhubarb-recognition whisper)
 	target_compile_definitions(rhubarb-recognition PUBLIC RHUBARB_HAS_WHISPER=1)

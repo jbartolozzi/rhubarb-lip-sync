@@ -9,6 +9,9 @@
 #include "recognition/PhoneticRecognizer.h"
 #if RHUBARB_HAS_WHISPER
 #include "recognition/WhisperRecognizer.h"
+#include "recognition/WhisperPocketSphinxRecognizer.h"
+#include "recognition/whisperTranscribe.h"
+#include "audio/audioFileReading.h"
 #endif
 #include "animation/targetShapeSet.h"
 #include "tools/progress.h"
@@ -57,12 +60,18 @@ unique_ptr<Recognizer> createRecognizer(
 				? fs::path()
 				: fs::u8path(whisperModelPath));
 	}
+	if (recognizerName == "whisperPocketSphinx") {
+		return make_unique<WhisperPocketSphinxRecognizer>(
+			whisperModelPath.empty()
+				? fs::path()
+				: fs::u8path(whisperModelPath));
+	}
 #endif
 	throw std::invalid_argument(
 		"Unknown recognizer: '" + recognizerName + "'."
 		" Use 'pocketSphinx', 'phonetic'"
 #if RHUBARB_HAS_WHISPER
-		", or 'whisper'"
+		", 'whisper', or 'whisperPocketSphinx'"
 #endif
 		"."
 	);
@@ -96,6 +105,38 @@ void initResourcePath() {
 	}
 	// Otherwise, fall back to default getBinDirectory() behavior
 }
+
+#if RHUBARB_HAS_WHISPER
+string transcribe(
+	const string& inputFile,
+	const string& whisperModel,
+	int threads
+) {
+	initResourcePath();
+
+	int actualThreads = threads > 0 ? threads : getProcessorCoreCount();
+	fs::path modelPath = whisperModel.empty()
+		? fs::path()
+		: fs::u8path(whisperModel);
+
+	// Resolve model path (same logic as WhisperRecognizer)
+	if (modelPath.empty()) {
+		modelPath = getBinDirectory() / "res" / "whisper" / "ggml-tiny.bin";
+	}
+
+	NullProgressSink progressSink;
+	boost::optional<string> noDialog;
+
+	string result;
+	{
+		py::gil_scoped_release release;
+		// Read the audio file
+		auto audioClip = createAudioFileClip(fs::u8path(inputFile));
+		result = transcribeWithWhisper(*audioClip, modelPath, noDialog, actualThreads, progressSink);
+	}
+	return result;
+}
+#endif
 
 vector<MouthCue> animate(
 	const string& inputFile,
@@ -178,7 +219,8 @@ PYBIND11_MODULE(_rhubarb, m) {
 			input_file: Path to a WAVE (.wav) or Ogg Vorbis (.ogg) audio file.
 			dialog: Optional dialog text to improve recognition accuracy.
 			recognizer: Speech recognizer to use: 'pocketSphinx' (English),
-				'phonetic' (any language), or 'whisper' (English, requires model file).
+				'phonetic' (any language), 'whisper' (English, requires model file),
+				or 'whisperPocketSphinx' (hybrid: Whisper transcription + PocketSphinx alignment).
 			extended_shapes: Extended mouth shapes to use. Default 'GHX'. Use '' for basic shapes only (A-F).
 			threads: Max worker threads. 0 means use all available CPU cores.
 			framerate: Target animation frame rate in fps (e.g. 12, 24). Shape transitions
@@ -190,4 +232,24 @@ PYBIND11_MODULE(_rhubarb, m) {
 			List of MouthCue objects with start, end (seconds), and shape attributes.
 		)doc"
 	);
+
+#if RHUBARB_HAS_WHISPER
+	m.def("transcribe", &transcribe,
+		py::arg("input_file"),
+		py::arg("whisper_model") = "",
+		py::arg("threads") = 0,
+		R"doc(
+		Transcribe an audio file using Whisper and return the text.
+
+		Args:
+			input_file: Path to a WAVE (.wav) or Ogg Vorbis (.ogg) audio file.
+			whisper_model: Path to a Whisper GGML model file.
+				If empty, looks for the model in the default resource directory.
+			threads: Max worker threads. 0 means use all available CPU cores.
+
+		Returns:
+			Transcribed text as a string.
+		)doc"
+	);
+#endif
 }

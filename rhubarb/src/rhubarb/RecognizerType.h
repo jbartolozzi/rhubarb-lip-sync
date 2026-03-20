@@ -7,6 +7,7 @@ enum class RecognizerType {
 	Phonetic,
 #if RHUBARB_HAS_WHISPER
 	Whisper,
+	WhisperPocketSphinx,
 #endif
 };
 

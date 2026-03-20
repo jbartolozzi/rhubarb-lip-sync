@@ -3551,3 +3551,198 @@ events:
         - "/Network/Library/Frameworks"
         - "/System/Library/Frameworks"
 ...
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "build-whisper/_deps/pybind11-src/tools/FindPythonLibsNew.cmake:73 (find_program)"
+      - "build-whisper/_deps/pybind11-src/tools/pybind11Tools.cmake:50 (find_package)"
+      - "build-whisper/_deps/pybind11-src/tools/pybind11Common.cmake:228 (include)"
+      - "build-whisper/_deps/pybind11-src/CMakeLists.txt:251 (include)"
+    mode: "program"
+    variable: "PYTHON_EXECUTABLE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "python"
+    candidate_directories:
+      - "/opt/anaconda3/envs/flux-env/"
+      - "/opt/anaconda3/envs/flux-env/bin/"
+    searched_directories:
+      - "/opt/anaconda3/envs/flux-env/python"
+    found: "/opt/anaconda3/envs/flux-env/bin/python"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/envs/flux-env/bin"
+        - "/Users/jhb/.local/bin"
+        - "/Users/jhb/.nvm/versions/node/v22.15.0/bin"
+        - "/opt/homebrew/bin"
+        - "/Applications/Houdini/Houdini21.0.512/Frameworks/Houdini.framework/Versions/Current/Resources/bin"
+        - "/Applications/Houdini/Houdini21.0.512/Frameworks/Houdini.framework/Versions/Current/Resources/houdini/sbin"
+        - "/Applications/Thinkbox/Deadline10/Resources"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Library/Apple/usr/bin"
+        - "/usr/local/share/dotnet"
+        - "/Users/jhb/.dotnet/tools"
+        - "/Users/jhb/.local/bin"
+        - "/Users/jhb/.nvm/versions/node/v22.15.0/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/Applications/Houdini/Houdini21.0.512/Frameworks/Houdini.framework/Versions/Current/Resources/bin"
+        - "/Applications/Houdini/Houdini21.0.512/Frameworks/Houdini.framework/Versions/Current/Resources/houdini/sbin"
+        - "/Applications/Thinkbox/Deadline10/Resources"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
+      CMAKE_SYSTEM_APPBUNDLE_PATH:
+        - "/Applications"
+        - "/Applications/Xcode.app/Contents/Applications"
+        - "/Applications/Xcode.app/Contents/Developer/Applications"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "build-whisper/_deps/pybind11-src/tools/FindPythonLibsNew.cmake:277 (find_library)"
+      - "build-whisper/_deps/pybind11-src/tools/pybind11Tools.cmake:50 (find_package)"
+      - "build-whisper/_deps/pybind11-src/tools/pybind11Common.cmake:228 (include)"
+      - "build-whisper/_deps/pybind11-src/CMakeLists.txt:251 (include)"
+    mode: "library"
+    variable: "PYTHON_LIBRARY"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "python3.12"
+    candidate_directories:
+      - "/opt/anaconda3/envs/flux-env/lib/"
+    found: "/opt/anaconda3/envs/flux-env/lib/libpython3.12.dylib"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/envs/flux-env/bin"
+        - "/Users/jhb/.local/bin"
+        - "/Users/jhb/.nvm/versions/node/v22.15.0/bin"
+        - "/opt/homebrew/bin"
+        - "/Applications/Houdini/Houdini21.0.512/Frameworks/Houdini.framework/Versions/Current/Resources/bin"
+        - "/Applications/Houdini/Houdini21.0.512/Frameworks/Houdini.framework/Versions/Current/Resources/houdini/sbin"
+        - "/Applications/Thinkbox/Deadline10/Resources"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Library/Apple/usr/bin"
+        - "/usr/local/share/dotnet"
+        - "/Users/jhb/.dotnet/tools"
+        - "/Users/jhb/.local/bin"
+        - "/Users/jhb/.nvm/versions/node/v22.15.0/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/Applications/Houdini/Houdini21.0.512/Frameworks/Houdini.framework/Versions/Current/Resources/bin"
+        - "/Applications/Houdini/Houdini21.0.512/Frameworks/Houdini.framework/Versions/Current/Resources/houdini/sbin"
+        - "/Applications/Thinkbox/Deadline10/Resources"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+      CMAKE_SYSTEM_FRAMEWORK_PATH:
+        - "~/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Network/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Library/Frameworks"
+        - "/Library/Frameworks"
+        - "/Network/Library/Frameworks"
+        - "/System/Library/Frameworks"
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/opt/homebrew/share/cmake/Modules/CheckCXXCompilerFlag.cmake:103 (cmake_check_compiler_flag)"
+      - "build-whisper/_deps/pybind11-src/tools/pybind11Common.cmake:323 (check_cxx_compiler_flag)"
+      - "build-whisper/_deps/pybind11-src/tools/pybind11Common.cmake:363 (_pybind11_return_if_cxx_and_linker_flags_work)"
+      - "build-whisper/_deps/pybind11-src/tools/pybind11Common.cmake:435 (_pybind11_generate_lto)"
+      - "build-whisper/_deps/pybind11-src/CMakeLists.txt:251 (include)"
+    checks:
+      - "Performing Test HAS_FLTO_THIN"
+    directories:
+      source: "/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles/CMakeScratch/TryCompile-SQZciX"
+      binary: "/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles/CMakeScratch/TryCompile-SQZciX"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: ""
+    buildResult:
+      variable: "HAS_FLTO_THIN"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles/CMakeScratch/TryCompile-SQZciX'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_580b0/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_580b0.dir/build.make CMakeFiles/cmTC_580b0.dir/build
+        Building CXX object CMakeFiles/cmTC_580b0.dir/src.cxx.o
+        /usr/bin/c++ -DHAS_FLTO_THIN  -std=gnu++17 -arch arm64   -flto -MD -MT CMakeFiles/cmTC_580b0.dir/src.cxx.o -MF CMakeFiles/cmTC_580b0.dir/src.cxx.o.d -o CMakeFiles/cmTC_580b0.dir/src.cxx.o -c /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles/CMakeScratch/TryCompile-SQZciX/src.cxx
+        Linking CXX executable cmTC_580b0
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_580b0.dir/link.txt --verbose=1
+        /usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_580b0.dir/src.cxx.o -o cmTC_580b0  -flto
+        
+      exitCode: 0
+...

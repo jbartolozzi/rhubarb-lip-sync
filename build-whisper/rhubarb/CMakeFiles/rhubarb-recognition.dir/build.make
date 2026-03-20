@@ -184,6 +184,34 @@ rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperRecognizer.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperRecognizer.cpp.s"
 	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/rhubarb && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/WhisperRecognizer.cpp -o CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperRecognizer.cpp.s
 
+rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.o: rhubarb/CMakeFiles/rhubarb-recognition.dir/flags.make
+rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.o: /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/WhisperPocketSphinxRecognizer.cpp
+rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.o: rhubarb/CMakeFiles/rhubarb-recognition.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.o"
+	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/rhubarb && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.o -MF CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.o.d -o CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.o -c /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/WhisperPocketSphinxRecognizer.cpp
+
+rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.i"
+	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/rhubarb && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/WhisperPocketSphinxRecognizer.cpp > CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.i
+
+rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.s"
+	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/rhubarb && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/WhisperPocketSphinxRecognizer.cpp -o CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.s
+
+rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.o: rhubarb/CMakeFiles/rhubarb-recognition.dir/flags.make
+rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.o: /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/whisperTranscribe.cpp
+rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.o: rhubarb/CMakeFiles/rhubarb-recognition.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.o"
+	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/rhubarb && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.o -MF CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.o.d -o CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.o -c /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/whisperTranscribe.cpp
+
+rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.i"
+	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/rhubarb && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/whisperTranscribe.cpp > CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.i
+
+rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.s"
+	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/rhubarb && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jhb/Documents/GitHub/rhubarb-lip-sync/rhubarb/src/recognition/whisperTranscribe.cpp -o CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.s
+
 # Object files for target rhubarb-recognition
 rhubarb__recognition_OBJECTS = \
 "CMakeFiles/rhubarb-recognition.dir/src/recognition/cmuDictionary.cpp.o" \
@@ -193,7 +221,9 @@ rhubarb__recognition_OBJECTS = \
 "CMakeFiles/rhubarb-recognition.dir/src/recognition/PocketSphinxRecognizer.cpp.o" \
 "CMakeFiles/rhubarb-recognition.dir/src/recognition/pocketSphinxTools.cpp.o" \
 "CMakeFiles/rhubarb-recognition.dir/src/recognition/tokenization.cpp.o" \
-"CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperRecognizer.cpp.o"
+"CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperRecognizer.cpp.o" \
+"CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.o" \
+"CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.o"
 
 # External object files for target rhubarb-recognition
 rhubarb__recognition_EXTERNAL_OBJECTS =
@@ -206,9 +236,11 @@ rhubarb/librhubarb-recognition.a: rhubarb/CMakeFiles/rhubarb-recognition.dir/src
 rhubarb/librhubarb-recognition.a: rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/pocketSphinxTools.cpp.o
 rhubarb/librhubarb-recognition.a: rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/tokenization.cpp.o
 rhubarb/librhubarb-recognition.a: rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperRecognizer.cpp.o
+rhubarb/librhubarb-recognition.a: rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/WhisperPocketSphinxRecognizer.cpp.o
+rhubarb/librhubarb-recognition.a: rhubarb/CMakeFiles/rhubarb-recognition.dir/src/recognition/whisperTranscribe.cpp.o
 rhubarb/librhubarb-recognition.a: rhubarb/CMakeFiles/rhubarb-recognition.dir/build.make
 rhubarb/librhubarb-recognition.a: rhubarb/CMakeFiles/rhubarb-recognition.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library librhubarb-recognition.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX static library librhubarb-recognition.a"
 	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/rhubarb && $(CMAKE_COMMAND) -P CMakeFiles/rhubarb-recognition.dir/cmake_clean_target.cmake
 	cd /Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-whisper/rhubarb && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/rhubarb-recognition.dir/link.txt --verbose=$(VERBOSE)
 
