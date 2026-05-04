@@ -1,0 +1,4 @@
+module RhubarbC {
+    header "Rhubarb.h"
+    export *
+}

@@ -1,0 +1,7 @@
+.build/
+.swiftpm/
+DerivedData/
+Rhubarb.xcframework/
+Sources/Rhubarb/Resources/*
+!Sources/Rhubarb/Resources/.gitkeep
+*.xcodeproj/

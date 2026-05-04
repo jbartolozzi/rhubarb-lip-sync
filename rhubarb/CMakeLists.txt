@@ -127,6 +127,9 @@ if(RHUBARB_BUILD_WHISPER)
 	FetchContent_MakeAvailable(whisper)
 endif()
 
+# ... C API for Swift / other native consumers (optional, for XCFramework builds)
+option(RHUBARB_BUILD_C_API "Build the C ABI static library (rhubarb-c)" OFF)
+
 # ... pybind11 (optional, for Python bindings)
 option(RHUBARB_BUILD_PYTHON "Build Python bindings" OFF)
 if(RHUBARB_BUILD_PYTHON)
@@ -613,6 +616,49 @@ if(RHUBARB_BUILD_PYTHON)
 		DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/lib/cmusphinx-en-us-5.2/"
 		DESTINATION rhubarb/res/sphinx/acoustic-model
 		COMPONENT python
+	)
+endif()
+
+# Define C API static library (for Swift / XCFramework consumers)
+if(RHUBARB_BUILD_C_API)
+	add_library(rhubarb-c STATIC
+		src/capi/Rhubarb.cpp
+		src/capi/Rhubarb.h
+	)
+	target_include_directories(rhubarb-c PRIVATE "src")
+	target_include_directories(rhubarb-c PUBLIC "src/capi")
+	target_link_libraries(rhubarb-c PRIVATE
+		rhubarb-lib
+		rhubarb-recognition
+		rhubarb-tools
+		rhubarb-core
+	)
+	set_target_properties(rhubarb-c PROPERTIES
+		OUTPUT_NAME "rhubarb-c"
+		POSITION_INDEPENDENT_CODE ON
+	)
+	target_compile_options(rhubarb-c PRIVATE ${enableWarningsFlags})
+
+	# Install the public header and module map for XCFramework packaging
+	install(
+		FILES
+			"${CMAKE_CURRENT_SOURCE_DIR}/src/capi/Rhubarb.h"
+			"${CMAKE_CURRENT_SOURCE_DIR}/src/capi/module.modulemap"
+		DESTINATION include
+		COMPONENT capi
+	)
+	install(TARGETS rhubarb-c ARCHIVE DESTINATION lib COMPONENT capi)
+
+	# Install resources required at runtime (sphinx model + acoustic model)
+	install(
+		DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/lib/pocketsphinx-rev13216/model/en-us/"
+		DESTINATION res/sphinx
+		COMPONENT capi
+	)
+	install(
+		DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/lib/cmusphinx-en-us-5.2/"
+		DESTINATION res/sphinx/acoustic-model
+		COMPONENT capi
 	)
 endif()
 

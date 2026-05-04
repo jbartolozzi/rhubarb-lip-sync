@@ -1,5 +1,6 @@
 .vs/
 build/
+build-xcframework/
 *.user
 update_shots.py
 img/lisa.afdesign~lock~

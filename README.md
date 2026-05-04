@@ -3,6 +3,7 @@
 > **Note:** This is a fork of [DanielSWolf/rhubarb-lip-sync](https://github.com/DanielSWolf/rhubarb-lip-sync). Changes from the original include:
 >
 > - **Python bindings** -- use Rhubarb as a library via `pip install` and `import rhubarb`
+> - **Swift / macOS XCFramework** -- use Rhubarb from a Swift app via a typed Swift API (`import Rhubarb`); see [swift/INTEGRATION.md](swift/INTEGRATION.md)
 > - **Four new extended mouth shapes** (I, J, K, L) for more detailed animation (wide smile, tongue-between-teeth, pursed lips, R sound)
 > - **Target framerate support** (`--framerate`) -- snaps shape transitions to frame boundaries for cleaner animation at any fps
 > - **Improved animation accuracy** -- consonant-vowel coarticulation, per-diphthong timing, expanded tween coverage, better static segment breaking, and expanded pronunciation fixes
@@ -12,7 +13,7 @@
 
 Rhubarb Lip Sync allows you to quickly create 2D mouth animation from voice recordings. It analyzes your audio files, recognizes what is being said, then automatically generates lip sync information. You can use it for animating speech in computer games, animated cartoons, or any similar project.
 
-You can use Rhubarb Lip Sync as a **Python library** or through its **command line interface** (**CLI**) to generate files in various [output formats](#output-formats) ([TSV](#tab-separated-values-tsv)/[XML](#xml-format-xml)/[JSON](#json-format-json)).
+You can use Rhubarb Lip Sync as a **Python library**, as a **Swift library** (macOS XCFramework — see [swift/INTEGRATION.md](swift/INTEGRATION.md)), or through its **command line interface** (**CLI**) to generate files in various [output formats](#output-formats) ([TSV](#tab-separated-values-tsv)/[XML](#xml-format-xml)/[JSON](#json-format-json)).
 
 ## Python usage
 
@@ -83,6 +84,37 @@ To skip building Whisper support (faster compile, smaller binary):
 ```bash
 pip install . --config-settings='cmake.args=-DRHUBARB_BUILD_WHISPER=OFF'
 ```
+
+## Swift usage (macOS)
+
+Rhubarb ships a Swift API as a universal macOS XCFramework (arm64 + x86_64). One-time build:
+
+```bash
+./package-xcframework.sh
+```
+
+That produces `swift/Rhubarb.xcframework` and stages PocketSphinx resources into the Swift package. Add it to your app via Swift Package Manager (`File > Add Package Dependencies > Add Local…`, point at `swift/`) or drag the framework into your Xcode project.
+
+```swift
+import Rhubarb
+
+try Rhubarb.useBundledResources()  // or Rhubarb.setResourceDirectory(myURL)
+
+var options = AnimationOptions()
+options.recognizer     = .pocketSphinx
+options.extendedShapes = "GHIJKLX"
+options.framerate      = 24
+
+let cues = try Rhubarb.animate(
+    audioFile: URL(fileURLWithPath: "/path/to/recording.wav"),
+    options: options
+)
+for cue in cues { print("\(cue.start)–\(cue.end): \(cue.shape)") }
+```
+
+For full setup steps (SwiftPM and drag-in paths, resource bundling, sandboxing notes), see [swift/INTEGRATION.md](swift/INTEGRATION.md).
+
+Whisper is not exposed through the Swift API. If you need Whisper-grade accuracy in a Swift app, integrate [whisper.cpp](https://github.com/ggerganov/whisper.cpp)'s own xcframework alongside Rhubarb's.
 
 ## Mouth shapes
 
