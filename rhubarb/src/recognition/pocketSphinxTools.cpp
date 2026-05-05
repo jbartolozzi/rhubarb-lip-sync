@@ -43,30 +43,14 @@ logging::Level convertSphinxErrorLevel(err_lvl_t errorLevel) {
 
 void sphinxLogCallback(void* user_data, err_lvl_t errorLevel, const char* format, ...) {
 	UNUSED(user_data);
-
-	// Create varArgs list
-	va_list args;
-	va_start(args, format);
-	auto _ = gsl::finally([&args]() { va_end(args); });
-
-	// Format message
-	const int initialSize = 256;
-	vector<char> chars(initialSize);
-	bool success = false;
-	while (!success) {
-		const int charsWritten = vsnprintf(chars.data(), chars.size(), format, args);
-		if (charsWritten < 0) throw runtime_error("Error formatting PocketSphinx log message.");
-
-		success = charsWritten < static_cast<int>(chars.size());
-		if (!success) chars.resize(chars.size() * 2);
-	}
-	const regex waste("^(DEBUG|INFO|INFOCONT|WARN|ERROR|FATAL): ");
-	string message =
-		std::regex_replace(chars.data(), waste, "", std::regex_constants::format_first_only);
-	boost::algorithm::trim(message);
-
-	const logging::Level logLevel = convertSphinxErrorLevel(errorLevel);
-	logging::log(logLevel, message);
+	UNUSED(errorLevel);
+	UNUSED(format);
+	// Intentional no-op. PocketSphinx's internal log calls occasionally pass
+	// NULL where a `%s` arg is expected. Apple's libc vsnprintf strict-
+	// strlens that pointer and segfaults — reliably on x86_64, sporadically
+	// on arm64 depending on memory layout. PocketSphinx errors that actually
+	// matter still surface as exceptions at the C API (ps_init etc. throw),
+	// so dropping the chatter is safe in practice and prevents the crash.
 }
 
 void redirectPocketSphinxOutput() {
