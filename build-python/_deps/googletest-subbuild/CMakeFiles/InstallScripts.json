@@ -1,7 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/Users/jhb/Documents/GitHub/rhubarb-lip-sync/build-python/_deps/googletest-subbuild/cmake_install.cmake"
-	],
-	"Parallel" : false
-}

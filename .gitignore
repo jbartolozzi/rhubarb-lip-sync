@@ -1,6 +1,7 @@
 .vs/
-build/
-build-xcframework/
+# CMake build trees — never commit these
+/build/
+/build-*/
 *.user
 update_shots.py
 img/lisa.afdesign~lock~
