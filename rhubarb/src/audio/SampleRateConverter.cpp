@@ -7,21 +7,30 @@ using std::invalid_argument;
 using std::unique_ptr;
 using std::make_unique;
 
+namespace {
+	int validateOutputSampleRate(int outputSampleRate, int inputSampleRate) {
+		if (outputSampleRate <= 0) {
+			throw invalid_argument("Sample rate must be positive.");
+		}
+		if (inputSampleRate < outputSampleRate) {
+			throw invalid_argument(fmt::format(
+				"Upsampling not supported. Input sample rate must not be below {}Hz.",
+				outputSampleRate
+			));
+		}
+		return outputSampleRate;
+	}
+}
+
 SampleRateConverter::SampleRateConverter(unique_ptr<AudioClip> inputClip, int outputSampleRate) :
 	inputClip(std::move(inputClip)),
-	downscalingFactor(static_cast<double>(this->inputClip->getSampleRate()) / outputSampleRate),
+	downscalingFactor(
+		static_cast<double>(this->inputClip->getSampleRate())
+		/ validateOutputSampleRate(outputSampleRate, this->inputClip->getSampleRate())
+	),
 	outputSampleRate(outputSampleRate),
 	outputSampleCount(std::lround(this->inputClip->size() / downscalingFactor))
 {
-	if (outputSampleRate <= 0) {
-		throw invalid_argument("Sample rate must be positive.");
-	}
-	if (this->inputClip->getSampleRate() < outputSampleRate) {
-		throw invalid_argument(fmt::format(
-			"Upsampling not supported. Input sample rate must not be below {}Hz.",
-			outputSampleRate
-		));
-	}
 }
 
 unique_ptr<AudioClip> SampleRateConverter::clone() const {

@@ -161,7 +161,10 @@ static vector<RecognizedWord> recognizeWords(
 	return words;
 }
 
-// Distribute phones evenly across a word's time range
+// Distribute phones evenly across a word's time range.
+// When the word is shorter than the phone count (in cs), the phone list is
+// sub-sampled so every emitted slot gets at least 1cs and no phone is
+// silently dropped to zero width.
 static void distributePhones(
 	const vector<Phone>& phones,
 	centiseconds wordStart,
@@ -174,12 +177,27 @@ static void distributePhones(
 	if (wordDuration <= centiseconds(0)) return;
 
 	const int phoneCount = static_cast<int>(phones.size());
+	const int durationCs = wordDuration.count();
+
+	if (durationCs < phoneCount) {
+		// Not enough cs to give each phone its own slot — sub-sample the
+		// phone list to fit, one phone per cs.
+		for (int i = 0; i < durationCs; ++i) {
+			const int phoneIndex = i * phoneCount / durationCs;
+			result.set(
+				wordStart + centiseconds(i),
+				wordStart + centiseconds(i + 1),
+				phones[phoneIndex]
+			);
+		}
+		return;
+	}
 
 	for (int i = 0; i < phoneCount; ++i) {
 		centiseconds phoneStart = wordStart +
-			centiseconds(wordDuration.count() * i / phoneCount);
+			centiseconds(durationCs * i / phoneCount);
 		centiseconds phoneEnd = wordStart +
-			centiseconds(wordDuration.count() * (i + 1) / phoneCount);
+			centiseconds(durationCs * (i + 1) / phoneCount);
 
 		if (phoneStart < phoneEnd) {
 			result.set(phoneStart, phoneEnd, phones[i]);

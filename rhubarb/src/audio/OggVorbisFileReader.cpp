@@ -122,11 +122,17 @@ OggVorbisFileReader::OggVorbisFileReader(const path& filePath) :
 	filePath(filePath)
 {
 	OggVorbisFile file(filePath);
-	
+
 	vorbis_info* vorbisInfo = ov_info(file.get(), -1);
+	if (!vorbisInfo) {
+		throw std::runtime_error(fmt::format(
+			"Could not read Ogg Vorbis stream info from {}.",
+			filePath.u8string()
+		));
+	}
 	sampleRate = vorbisInfo->rate;
 	channelCount = vorbisInfo->channels;
-	
+
 	sampleCount = throwOnError(ov_pcm_total(file.get(), -1));
 }
 
