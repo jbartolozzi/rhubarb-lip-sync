@@ -66,13 +66,37 @@ void redirectPocketSphinxOutput() {
 	redirected = true;
 }
 
+// Returns a new timeline containing the intersection of `audio` and
+// `visual` — i.e. only intervals where both timelines mark "speech".
+// O(N*M) but both are typically small (tens of utterances).
+static JoiningBoundedTimeline<void> intersectTimelines(
+	const JoiningBoundedTimeline<void>& audio,
+	const JoiningBoundedTimeline<void>& visual,
+	TimeRange bounds
+) {
+	JoiningBoundedTimeline<void> result(bounds);
+	for (const auto& audioSeg : audio) {
+		for (const auto& visualSeg : visual) {
+			const centiseconds start =
+				std::max(audioSeg.getStart(), visualSeg.getStart());
+			const centiseconds end =
+				std::min(audioSeg.getEnd(), visualSeg.getEnd());
+			if (start < end) {
+				result.set(start, end);
+			}
+		}
+	}
+	return result;
+}
+
 BoundedTimeline<Phone> recognizePhones(
 	const AudioClip& inputAudioClip,
 	optional<std::string> dialog,
 	decoderFactory createDecoder,
 	utteranceToPhonesFunction utteranceToPhones,
 	int maxThreadCount,
-	ProgressSink& progressSink
+	ProgressSink& progressSink,
+	const BlendshapeVadParams& blendshapeVad
 ) {
 	ProgressMerger totalProgressMerger(progressSink);
 	ProgressSink& voiceActivationProgressSink =
@@ -89,6 +113,39 @@ BoundedTimeline<Phone> recognizePhones(
 		utterances = detectVoiceActivity(*audioClip, voiceActivationProgressSink);
 	} catch (...) {
 		std::throw_with_nested(runtime_error("Error detecting segments of speech."));
+	}
+
+	// Intersect the audio VAD output with the blendshape-derived mouth
+	// motion mask when a track was supplied. Only suppresses utterances
+	// rhubarb would otherwise create in audio where the mouth wasn't
+	// moving (background noise that triggers WebRTC VAD). If the mask
+	// comes back empty for any reason we leave `utterances` alone —
+	// failing closed would silently drop all speech.
+	if (blendshapeVad.track && !blendshapeVad.track->empty()) {
+		const auto motion = blendshapeVad.track->mouthMotionMask(
+			utterances.getRange(),
+			blendshapeVad.jawOpenThreshold,
+			blendshapeVad.minSilenceMs);
+		if (motion.begin() != motion.end()) {
+			const std::size_t beforeCount =
+				std::distance(utterances.begin(), utterances.end());
+			utterances = intersectTimelines(
+				utterances, motion, utterances.getRange());
+			const std::size_t afterCount =
+				std::distance(utterances.begin(), utterances.end());
+			logging::infoFormat(
+				"Blendshape VAD: {} utterance(s) before mask, "
+				"{} after (jawOpen > {}, minSilence {} ms)",
+				beforeCount,
+				afterCount,
+				blendshapeVad.jawOpenThreshold,
+				blendshapeVad.minSilenceMs);
+		} else {
+			logging::info(
+				"Blendshape VAD: motion mask is empty — leaving audio "
+				"VAD untouched (face appears still throughout, or "
+				"jawOpenIndex out of range)");
+		}
 	}
 
 	redirectPocketSphinxOutput();

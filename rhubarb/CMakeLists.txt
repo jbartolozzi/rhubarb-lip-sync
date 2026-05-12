@@ -443,6 +443,8 @@ target_link_libraries(rhubarb-logging
 
 # ... rhubarb-recognition
 add_library(rhubarb-recognition
+	src/recognition/BlendshapeTimeline.cpp
+	src/recognition/BlendshapeTimeline.h
 	src/recognition/cmuDictionary.cpp
 	src/recognition/cmuDictionary.h
 	src/recognition/g2p.cpp

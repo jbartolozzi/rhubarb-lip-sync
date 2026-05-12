@@ -355,5 +355,6 @@ BoundedTimeline<Phone> PocketSphinxRecognizer::recognizePhones(
 	ProgressSink& progressSink
 ) const {
 	return ::recognizePhones(
-		inputAudioClip, dialog, &createDecoder, &utteranceToPhones, maxThreadCount, progressSink);
+		inputAudioClip, dialog, &createDecoder, &utteranceToPhones,
+		maxThreadCount, progressSink, blendshapeVad_);
 }

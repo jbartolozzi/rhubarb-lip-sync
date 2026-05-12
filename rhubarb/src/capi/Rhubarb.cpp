@@ -3,14 +3,18 @@
 #include "lib/rhubarbLib.h"
 #include "core/Shape.h"
 #include "core/appInfo.h"
+#include "recognition/BlendshapeTimeline.h"
 #include "recognition/PocketSphinxRecognizer.h"
 #include "recognition/PhoneticRecognizer.h"
+#include "recognition/pocketSphinxTools.h"
 #include "animation/targetShapeSet.h"
 #include "tools/progress.h"
 #include "tools/parallel.h"
 #include "tools/platformTools.h"
 
 #include <chrono>
+#include <cstdarg>
+#include <cstdio>
 #include <cstdlib>
 #include <cstring>
 #include <exception>
@@ -18,6 +22,38 @@
 #include <memory>
 #include <sstream>
 #include <string>
+
+#if defined(__APPLE__)
+    #include <os/log.h>
+#endif
+
+namespace {
+
+// Bridge from the C ABI into a logging sink the host app can observe.
+// On Apple platforms we route through os_log under the same subsystem
+// the Swift app uses, so entries show up in `log stream`, Console.app,
+// and any os.Logger-based viewer. We additionally mirror to stderr for
+// Xcode console / terminal launches. On non-Apple platforms, stderr is
+// the only sink — matches upstream rhubarb's logging behavior.
+void log_to_host(const char* fmt, ...) {
+    char buffer[512];
+    va_list args;
+    va_start(args, fmt);
+    std::vsnprintf(buffer, sizeof(buffer), fmt, args);
+    va_end(args);
+
+#if defined(__APPLE__)
+    static os_log_t logger =
+        os_log_create("studiorischio.Mocap-Studio", "rhubarb-cabi");
+    // Mark the formatted text public so it isn't redacted as <private>
+    // when viewed via `log stream` from outside the app's signing scope.
+    os_log_info(logger, "%{public}s", buffer);
+#endif
+
+    std::fprintf(stderr, "%s\n", buffer);
+}
+
+}
 
 namespace {
 
@@ -41,10 +77,33 @@ ShapeSet parseShapeSet(const char* extendedShapes) {
     return result;
 }
 
-std::unique_ptr<Recognizer> createRecognizer(RhubarbRecognizer kind) {
+std::unique_ptr<Recognizer> createRecognizer(
+    RhubarbRecognizer kind,
+    const RhubarbOptions& opts
+) {
     switch (kind) {
-        case RHUBARB_RECOGNIZER_POCKET_SPHINX:
-            return std::make_unique<PocketSphinxRecognizer>();
+        case RHUBARB_RECOGNIZER_POCKET_SPHINX: {
+            BlendshapeVadParams vad;
+            // Only attach a blendshape track when both the data and the
+            // toggle are present. Without the toggle the track is
+            // ignored even if it was supplied — keeps the C ABI's
+            // blendshape fields useful for future passes (viseme fusion,
+            // etc.) that don't want VAD gating.
+            if (opts.vad_use_blendshape_mask
+                && opts.blendshape_frame_count > 0
+                && opts.blendshape_timestamps != nullptr
+                && opts.blendshape_values != nullptr)
+            {
+                vad.track = std::make_shared<BlendshapeTimeline>(
+                    opts.blendshape_timestamps,
+                    opts.blendshape_values,
+                    opts.blendshape_frame_count,
+                    opts.blendshape_values_per_frame);
+                vad.jawOpenThreshold = opts.vad_jaw_open_threshold;
+                vad.minSilenceMs = opts.vad_min_silence_ms;
+            }
+            return std::make_unique<PocketSphinxRecognizer>(std::move(vad));
+        }
         case RHUBARB_RECOGNIZER_PHONETIC:
             return std::make_unique<PhoneticRecognizer>();
     }
@@ -69,6 +128,13 @@ void rhubarb_default_options(RhubarbOptions* options) {
     options->extended_shapes = "GHX";
     options->framerate = 0;
     options->thread_count = 0;
+    options->blendshape_timestamps = nullptr;
+    options->blendshape_values = nullptr;
+    options->blendshape_frame_count = 0;
+    options->blendshape_values_per_frame = 0;
+    options->vad_use_blendshape_mask = 0;
+    options->vad_jaw_open_threshold = 0.05f;
+    options->vad_min_silence_ms = 200;
 }
 
 void rhubarb_set_resource_directory(const char* path) {
@@ -99,6 +165,28 @@ RhubarbStatus rhubarb_animate(
     rhubarb_default_options(&defaults);
     const RhubarbOptions& opts = options ? *options : defaults;
 
+    // Step 1 of blendshape integration: just confirm what reached us
+    // across the Swift -> C ABI -> C++ boundary. Real consumption of
+    // these values comes in later steps (VAD intersection, viseme
+    // fusion, etc.). Routed through log_to_host() so the line appears
+    // in the host's unified log on Apple platforms, not just stderr.
+    if (opts.blendshape_frame_count > 0
+            && opts.blendshape_timestamps != nullptr
+            && opts.blendshape_values != nullptr) {
+        const double firstT = opts.blendshape_timestamps[0];
+        const double lastT =
+            opts.blendshape_timestamps[opts.blendshape_frame_count - 1];
+        log_to_host(
+            "rhubarb: received %zu blendshape frames "
+            "(%zu values each, %.3fs..%.3fs)",
+            opts.blendshape_frame_count,
+            opts.blendshape_values_per_frame,
+            firstT,
+            lastT);
+    } else {
+        log_to_host("rhubarb: no blendshape data supplied");
+    }
+
     try {
         const std::filesystem::path audioFile = std::filesystem::u8path(audio_path);
         if (!std::filesystem::exists(audioFile)) {
@@ -106,7 +194,7 @@ RhubarbStatus rhubarb_animate(
             return RHUBARB_ERROR_FILE_NOT_FOUND;
         }
 
-        auto recognizer = createRecognizer(opts.recognizer);
+        auto recognizer = createRecognizer(opts.recognizer, opts);
         const ShapeSet shapeSet = parseShapeSet(
             opts.extended_shapes ? opts.extended_shapes : "GHX");
 
